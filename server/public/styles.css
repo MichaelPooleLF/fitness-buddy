@@ -247,6 +247,17 @@
   color: white;
 }
 
+.day {
+  padding: 0 0.2rem;
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+
+.day:hover {
+  color: black;
+  cursor: pointer;
+}
+
 @media only screen and (max-width: 450px) {
   .responsive-centering {
     justify-content: center;
@@ -255,11 +266,6 @@
   .responsive-x-padding {
     padding-left: 1rem;
     padding-right: 1rem
-  }
-
-  .table-days {
-    display: flex;
-    justify-content: center;
   }
 }
 
@@ -272,12 +278,12 @@
     max-width: 100%;
   }
 
-  .table-days {
-    max-width: 80%;
+  .days-container {
+    max-width: 99%;
   }
 
   .table-container {
-    max-width: 80%;
+    max-width: 99%;
   }
 
   .footer-container {
