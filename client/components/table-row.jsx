@@ -22,13 +22,13 @@ class TableRow extends React.Component {
 
         <>
           <tr className="border-bottom border-primary">
-            <td onClick={this.showDescription}>{this.props.name}</td>
+            <td onClick={this.showDescription}
+              className="cursor-pointer">{this.props.name}</td>
             <UpdateAndDelete
               onClick={this.handleClick}
               handleDeleteClick={this.props.handleDeleteClick}
               handleUpdateClick={this.props.handleUpdateClick}
-              id={this.props.id}
-            />
+              id={this.props.id} />
           </tr>
           <tr className="border-bottom border-primary">
             <Description description={this.props.description} />
@@ -41,7 +41,8 @@ class TableRow extends React.Component {
 
         <>
           <tr className="border-bottom">
-            <td onClick={this.showDescription}>{this.props.name}</td>
+            <td onClick={this.showDescription}
+              className="cursor-pointer">{this.props.name}</td>
             <UpdateAndDelete
               onClick={this.handleClick}
               handleDeleteClick={this.props.handleDeleteClick}
