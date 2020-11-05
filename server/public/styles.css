@@ -1,0 +1,206 @@
+
+.header {
+  width: 100%;
+}
+.button {
+  margin: 0.2rem;
+  color: #fff;
+  background-color: #4682B4;
+  padding: 0 3rem;
+}
+
+.main-table-div {
+  margin: auto;
+  width: 80%;
+}
+
+.main-table {
+  width: 100%;
+}
+
+.main-table-body {
+  width: 100%;
+}
+
+.update-and-delete {
+  display: flex;
+  text-align: right;
+}
+
+.footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0px;
+}
+
+.fas {
+  color: #fff;
+}
+
+.calorie-title {
+  margin: 8% 0% 13% 0%;
+}
+
+.calorie-option {
+  font-size: 12px;
+}
+
+.calorie-submit {
+  margin-top: 12%;
+  padding: 3% 10%;
+}
+
+.lifestyle {
+  width: 49%;
+}
+
+.calorie-modal {
+  background-color: rgb(234, 243, 255);
+  border: 2px solid #4682B4;
+  border-radius: 5px;
+  position: relative;
+  bottom: 4px;
+}
+
+.calorie-return {
+  margin: 3% 0% 15% 0%;
+  padding: 1% 3%;
+}
+
+.calorie-m-div {
+  margin: 4% 0% 0% 0%;
+}
+
+.calorie-table {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.calorie-t-body {
+  margin: auto;
+  text-align: right;
+  width: 70%;
+}
+
+.calorie-t-data-textbox {
+  padding-left: 7%;
+}
+
+.navbar {
+  background-color: #4682B4;
+}
+
+.navbar-brand {
+  display: flex;
+  color: #fff;
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+.pause-start {
+  position: relative;
+  bottom: 80px;
+  right: 40px;
+  background-color: blue;
+  height: 30px;
+  width: 30px;
+}
+
+.clock-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.clock {
+  width: 30vh;
+  height: 30vh;
+  border-radius: 50%;
+  border-style: solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.fitness-modal-background {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+
+.fitness-modal-content {
+  position: relative;
+  background-color: white;
+  height: 75%;
+  margin: auto;
+  width: 80%;
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.set-time {
+  margin-top: 30px;
+  padding: 0 25px;
+}
+
+.time-input {
+  width: 75px;
+  height: 75px;
+  font-size: 3rem;
+  text-align: center;
+}
+
+.time-seperator {
+  font-size: 3rem;
+  margin-bottom: 0;
+}
+
+.set-time {
+  font-size: 2rem;
+}
+
+.close-modal {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  font-size: 1.5rem;
+  color: red;
+}
+
+.margin-top-12 {
+  margin-top: 12rem;
+}
+
+.max-width-350 {
+  max-width: 350px;
+}
+.do-not-show {
+  visibility: hidden;
+}
+
+.table-container {
+  max-height: 373px;
+}
+
+.timer-state {
+  margin-top: 30px;
+}
+
+.add-exercise {
+  position: sticky;
+  width: 100%;
+  bottom: 76px;
+}
