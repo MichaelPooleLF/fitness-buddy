@@ -2,22 +2,21 @@ import React from 'react';
 
 function Footer(props) {
   return (
-    <div className="navbar footer">
-      <a className="navbar-brand" onClick={() => {
-        props.setView('table');
-      }}>
-        <i className="fas fa-calendar-alt fa-2x"></i>
-      </a>
-      <a className="navbar-brand" onClick={() => {
-        props.setView('calorie');
-      }} href="#">
-        <i className="fas fa-apple-alt fa-2x"></i>
-      </a>
-      <a className="navbar-brand" onClick={() => {
-        props.setView('stopwatch');
-      }} >
-        <i className="fas fa-clock fa-2x"></i>
-      </a>
+    <div className="footer">
+      <div className="container footer-container responsive-x-padding">
+        <i className="fas fa-calendar-alt size-icon cursor-pointer"
+          onClick={() => { props.setView('table'); }}>
+        </i>
+        <i className="fas fa-apple-alt size-icon cursor-pointer"
+          onClick={() => { props.setView('calorie'); }}>
+        </i>
+        <i className="fas fa-clock size-icon cursor-pointer"
+          onClick={() => { props.setView('stopwatch'); }}>
+        </i>
+        <i className="fas fa-plus size-icon cursor-pointer green"
+          onClick={() => props.setView('choose')}>
+        </i>
+      </div>
     </div>
   );
 }
