@@ -33,14 +33,12 @@ class Table extends React.Component {
       );
     }
     return (
-      <div className="overflow-auto table-container">
-        <div className="main-table-div">
-          <table className="main-table">
-            <tbody className="main-table-body">
-              {tableData}
-            </tbody>
-          </table>
-        </div>
+      <div className="overflow-auto container table-container">
+        <table className="main-table">
+          <tbody>
+            {tableData}
+          </tbody>
+        </table>
       </div>
     );
   }
