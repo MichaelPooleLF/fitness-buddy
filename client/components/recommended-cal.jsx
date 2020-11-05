@@ -10,9 +10,7 @@ function RecommendedCalories(props) {
     );
   } else {
     return (
-      <div className="invisible header navbar navbar-brand justify-content-between border-top">
-        <p className="mb-0">{`Recommended Daily Calories: ${props.calories}`}</p>
-      </div>
+      null
     );
   }
 }
