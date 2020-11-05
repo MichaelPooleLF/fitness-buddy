@@ -220,6 +220,10 @@
   justify-content: space-between;
 }
 
+.green {
+  color: #28a745;
+}
+
 @media only screen and (min-width: 450px) and (max-width: 1400px) {
   .responsive-flex {
     justify-content: space-around;

@@ -13,6 +13,9 @@ function Footer(props) {
         <i className="fas fa-clock size-icon cursor-pointer"
           onClick={() => { props.setView('stopwatch'); }}>
         </i>
+        <i className="fas fa-plus size-icon cursor-pointer green"
+          onClick={() => props.setView('choose')}>
+        </i>
       </div>
     </div>
   );
