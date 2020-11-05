@@ -3,7 +3,7 @@ import React from 'react';
 function TableDays(props) {
 
   return (
-    <div className="container">
+    <div className="container table-days">
       <div className="btn-group btn-group-sm mt-2 mb-2 d-flex">
         <button type="button" className="btn button day-button" id="1" onClick={props.handleClick}>Sun</button>
         <button type="button" className="btn button day-button" id="2" onClick={props.handleClick}>Mon</button>
