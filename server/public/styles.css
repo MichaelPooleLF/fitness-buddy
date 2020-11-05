@@ -29,8 +29,14 @@
 
 .footer {
   width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
   position: absolute;
   bottom: 0px;
+  padding: 0.75rem 1rem;
+  background-color: #4682B4;
 }
 
 .fas {
@@ -203,4 +209,19 @@
   position: sticky;
   width: 100%;
   bottom: 76px;
+}
+
+.size-icon {
+  font-size: 2.5rem;
+}
+
+.responsive-flex {
+  display: flex;
+  justify-content: space-between;
+}
+
+@media only screen and (min-width: 450px) and (max-width: 1400px) {
+  .responsive-flex {
+    justify-content: space-around;
+  }
 }
