@@ -3,7 +3,7 @@ import React from 'react';
 function Footer(props) {
   return (
     <div className="footer">
-      <div className="container responsive-flex">
+      <div className="container d-flex justify-content-between">
         <i className="fas fa-calendar-alt size-icon cursor-pointer"
           onClick={() => { props.setView('table'); }}>
         </i>

@@ -2,6 +2,12 @@
 .header {
   width: 100%;
 }
+
+.app-header {
+  background-color: #4682B4;
+  padding: 1rem;
+}
+
 .button {
   margin: 0.2rem;
   color: #fff;
@@ -215,17 +221,17 @@
   font-size: 2.5rem;
 }
 
-.responsive-flex {
-  display: flex;
-  justify-content: space-between;
-}
-
 .green {
   color: #28a745;
 }
 
-@media only screen and (min-width: 450px) and (max-width: 1400px) {
-  .responsive-flex {
-    justify-content: space-around;
+.white {
+  color: white;
+}
+
+@media only screen and (max-width: 450px) {
+  .responsive-centering {
+    display: flex;
+    justify-content: center;
   }
 }
