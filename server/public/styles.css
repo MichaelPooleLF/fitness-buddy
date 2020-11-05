@@ -24,7 +24,7 @@
 
 .update-and-delete {
   display: flex;
-  text-align: right;
+  justify-content: flex-end;
 }
 
 .footer {
