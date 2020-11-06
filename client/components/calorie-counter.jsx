@@ -6,43 +6,53 @@ class CalorieCounter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gender: { value: '', valid: null },
-      activity: { value: '', valid: null },
-      age: { value: '', valid: null },
-      weight: { value: '', valid: null },
-      height: { value: '', valid: null },
-      calories: null,
-      view: 'calorie'
+      gender: { value: '', validity: null },
+      activity: { value: '', validity: null },
+      age: { value: '', validity: null },
+      weight: { value: '', validity: null },
+      height: { value: '', validity: null },
+      calories: this.props.calories,
+      view: 'calorie',
+      alreadySubmitted: false
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.updateData = this.updateData.bind(this);
+  }
+
+  updateData(name, value, validity, formIsValid) {
+    this.setState({
+      [name]: { value: value, validity: validity }
+    }, () => {
+      if (formIsValid) {
+        this.props.caloriesFunction(this.state);
+      }
+    });
   }
 
   handleChange(event) {
+    const form = event.currentTarget;
+    const formIsValid = form.checkValidity();
     const name = event.target.name;
-    const value = event.target.value;
-    if (name === 'gender' || name === 'activity') {
-      this.setState({
-        [name]: { value: value, valid: 'valid' }
-      });
-    } else {
-      const parsedValue = parseInt(value);
-      if (parsedValue) {
-        this.setState({
-          [name]: { value: parsedValue, valid: 'valid' }
-        });
-      } else {
-        this.setState({
-          [name]: { value: '', valid: 'invalid' }
-        });
+    const type = event.target.type;
+    let value = event.target.value;
+    if (value) {
+      if (type === 'number') {
+        value = parseInt(value);
       }
+      this.updateData(name, value, 'valid', formIsValid);
+    } else if (this.state.alreadySubmitted) {
+      this.updateData(name, value, 'invalid', formIsValid);
+    } else if (this.state[name].validity) {
+      this.updateData(name, value, null, formIsValid);
     }
   }
 
   handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
+    const formIsValid = form.checkValidity();
     const inputs = {
       age: this.state.age,
       weight: this.state.weight,
@@ -50,20 +60,23 @@ class CalorieCounter extends React.Component {
       gender: this.state.gender,
       activity: this.state.activity
     };
-    if (form.checkValidity()) {
+
+    if (formIsValid) {
       this.props.caloriesFunction(inputs);
       this.setState({
         calories: this.props.calories,
-        view: 'result'
+        view: 'result',
+        alreadySubmitted: true
       });
     } else {
       for (const property in inputs) {
-        if (!inputs[property].valid) {
-          inputs[property].valid = 'invalid';
+        if (!inputs[property].validity) {
+          inputs[property].validity = 'invalid';
         }
       }
       this.setState({
-        inputs
+        inputs,
+        alreadySubmitted: true
       });
     }
   }
@@ -73,16 +86,12 @@ class CalorieCounter extends React.Component {
   }
 
   render() {
-    const age = this.state.age;
-    const weight = this.state.weight;
-    const height = this.state.height;
-    const gender = this.state.gender;
-    const activity = this.state.activity;
+    const { age, weight, height, gender, activity } = this.state;
     if (this.state.view === 'result') {
       return (
         <CalorieCounterResult
           values={this.state}
-          calories={this.props.calories}
+          calories={this.state.calories}
           handleClick={this.handleClick}
         />
       );
@@ -98,14 +107,15 @@ class CalorieCounter extends React.Component {
             <p className='col text-center'>{'Fill out the form and press "Submit" to calculate your daily calorie needs'}</p>
           </div>
           <div className="row">
-            <form className="col calorie-form" onSubmit={this.handleSubmit} noValidate>
+            <form className="col calorie-form" onSubmit={this.handleSubmit} onChange={this.handleChange} noValidate>
               <div className="form-group row ">
                 <label htmlFor="gender" className="col-2 col-form-label">Gender</label>
                 <div className="col">
-                  <select className={`form-control ${gender.valid}`}
+                  <select className={`form-control ${gender.validity}`}
                     name="gender"
-                    value={gender.value}
-                    onChange={this.handleChange}
+                    defaultValue={gender.value}
+                    // value={gender.value}
+                    // onChange={this.handleChange}
                     required>
                     <option disabled value="">Select your gender</option>
                     <option value="Male">Male</option>
@@ -117,11 +127,12 @@ class CalorieCounter extends React.Component {
                 <label htmlFor="age" className='col-2 col-form-label'>Age</label>
                 <div className="col">
                   <input type="number"
-                    className={`form-control ${age.valid}`}
+                    className={`form-control ${age.validity}`}
                     id="age" name="age"
                     placeholder="Please enter your age..."
-                    value={age.value}
-                    onChange={this.handleChange}
+                    defaultValue={age.value}
+                    // value={age.value}
+                    // onChange={this.handleChange}
                     required/>
                 </div>
               </div>
@@ -129,11 +140,12 @@ class CalorieCounter extends React.Component {
                 <label htmlFor="weight" className='col-2 col-form-label'>Weight</label>
                 <div className="col">
                   <input type="number"
-                    className={`form-control ${weight.valid}`}
+                    className={`form-control ${weight.validity}`}
                     id="weight" name="weight"
                     placeholder="Please enter your wieght in lbs..."
-                    value={weight.value}
-                    onChange={this.handleChange}
+                    defaultValue={weight.value}
+                    // value={weight.value}
+                    // onChange={this.handleChange}
                     required/>
                 </div>
               </div>
@@ -141,22 +153,24 @@ class CalorieCounter extends React.Component {
                 <label htmlFor="height" className='col-2 col-form-label'>Height</label>
                 <div className="col">
                   <input type="number"
-                    className={`form-control ${height.valid}`}
+                    className={`form-control ${height.validity}`}
                     id="height" name="height"
                     placeholder="Please enter your height in inches..."
-                    value={height.value}
-                    onChange={this.handleChange}
+                    defaultValue={height.value}
+                    // value={height.value}
+                    // onChange={this.handleChange}
                     required/>
                 </div>
               </div>
               <div className="form-group row ">
                 <label className="col-2 col-form-label" htmlFor="activity">Activity Level</label>
                 <div className="col">
-                  <select className={`form-control ${activity.valid}`}
+                  <select className={`form-control ${activity.validity}`}
                     id="activity"
                     name="activity"
-                    value={activity.value}
-                    onChange={this.handleChange}
+                    defaultValue={activity.value}
+                    // value={activity.value}
+                    // onChange={this.handleChange}
                     required>
                     <option disabled value="">Select your level of activity</option>
                     <option value="Sedentary">Sedentary</option>
