@@ -1,4 +1,8 @@
 
+#root {
+  height: 85vh;
+}
+
 .header {
   width: 100%;
 }
@@ -69,6 +73,13 @@
 
 .calorie-title {
   margin: 8% 0% 13% 0%;
+}
+
+.calorie-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: right;
 }
 
 .calorie-option {
