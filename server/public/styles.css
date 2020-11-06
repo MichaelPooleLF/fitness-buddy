@@ -60,11 +60,6 @@
   bottom: 0px;
 }
 
-.test-class {
-  display: flex;
-  flex-direction: column;
-}
-
 .footer-container {
   background-color: #4682B4;
   display: flex;
