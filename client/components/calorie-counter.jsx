@@ -6,8 +6,8 @@ class CalorieCounter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      genderselect: 'default',
-      activitylevel: 'default',
+      gender: 'default',
+      activity: 'default',
       age: '',
       weight: '',
       height: '',
@@ -22,7 +22,7 @@ class CalorieCounter extends React.Component {
   handleChange(event) {
     const name = event.target.name;
     const value = event.target.value;
-    if (name === 'genderselect' || name === 'activitylevel') {
+    if (name === 'gender' || name === 'activity') {
       this.setState({
         [name]: value
       });
@@ -45,9 +45,9 @@ class CalorieCounter extends React.Component {
     const age = this.state.age;
     const weight = this.state.weight;
     const height = this.state.height;
-    const gender = this.state.genderselect;
-    const activity = this.state.activitylevel;
-    if (age && weight && height && activity && (this.state.genderselect !== 'default')) {
+    const gender = this.state.gender;
+    const activity = this.state.activity;
+    if (age && weight && height && activity && (this.state.gender !== 'default') && (this.state.activity !== 'default')) {
       this.props.caloriesFunction(gender, age, weight, height, activity);
       this.setState({
         calories: this.props.calories,
@@ -66,8 +66,8 @@ class CalorieCounter extends React.Component {
     const ageValue = this.state.age;
     const weightValue = this.state.weight;
     const heightValue = this.state.height;
-    const genderValue = this.state.genderselect;
-    const activityValue = this.state.activitylevel;
+    const genderValue = this.state.gender;
+    const activityValue = this.state.activity;
     if (this.state.view === 'result') {
       return (
         <CalorieCounterResult
@@ -102,19 +102,34 @@ class CalorieCounter extends React.Component {
               <div className="form-group row ">
                 <label htmlFor="age" className='col-2 col-form-label'>Age</label>
                 <div className="col">
-                  <input type="number" className="form-control" id="age" name="age" placeholder="Please enter your age..."/>
+                  <input type="number"
+                    className="form-control"
+                    id="age" name="age"
+                    placeholder="Please enter your age..."
+                    value={ageValue}
+                    onChange={this.handleChange}/>
                 </div>
               </div>
               <div className="form-group row ">
                 <label htmlFor="weight" className='col-2 col-form-label'>Weight</label>
                 <div className="col">
-                  <input type="number" className="form-control" id="weight" name="weight" placeholder="Please enter your wieght in lbs..." />
+                  <input type="number"
+                    className="form-control"
+                    id="weight" name="weight"
+                    placeholder="Please enter your wieght in lbs..."
+                    value={weightValue}
+                    onChange={this.handleChange}/>
                 </div>
               </div>
               <div className="form-group row ">
                 <label htmlFor="height" className='col-2 col-form-label'>Height</label>
                 <div className="col">
-                  <input type="number" className="form-control" id="height" name="height" placeholder="Please enter your height in inches..." />
+                  <input type="number"
+                    className="form-control"
+                    id="height" name="height"
+                    placeholder="Please enter your height in inches..."
+                    value={heightValue}
+                    onChange={this.handleChange}/>
                 </div>
               </div>
               <div className="form-group row ">
