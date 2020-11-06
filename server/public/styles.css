@@ -301,7 +301,6 @@
 }
 
 .icon-hover:hover {
-  position: relative;
   transform: scale(1.3);
 }
 
