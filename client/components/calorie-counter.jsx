@@ -1,8 +1,6 @@
 import React from 'react';
-import Header from './header';
 import CalorieCounterResult from './calorie-counter-result';
 import CalorieForm from './calorie-form';
-import Footer from './footer';
 
 class CalorieCounter extends React.Component {
   constructor(props) {
@@ -96,7 +94,6 @@ class CalorieCounter extends React.Component {
     if (this.state.view === 'result') {
       return (
         <>
-          <Header />
           <CalorieCounterResult
             values={this.state}
             calories={this.state.calories}
@@ -111,15 +108,10 @@ class CalorieCounter extends React.Component {
       );
     }
     return (
-      <>
-        <Header />
-        <CalorieForm
-          handleChange={this.handleChange}
-          handleSubmit={this.handleSubmit}
-          userData={this.state}/>
-        <Footer
-          setView={this.props.setView}/>
-      </>
+      <CalorieForm
+        handleChange={this.handleChange}
+        handleSubmit={this.handleSubmit}
+        userData={this.state}/>
     );
   }
 }

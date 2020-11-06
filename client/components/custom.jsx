@@ -1,5 +1,4 @@
 import React from 'react';
-import Header from './header';
 
 class Custom extends React.Component {
 
@@ -60,9 +59,8 @@ class Custom extends React.Component {
 
   render() {
     return (
-      <div>
-        <Header />
-        <h2 className="text-center mt-3">Add Entry</h2>
+      <div className="container">
+        <h2 className="text-center mt-3">Add Exercise</h2>
         <form onSubmit={this.handleSubmit}>
           <div className="form-group">
             <label htmlFor="name" className="sr-only">Exercise Name</label>
