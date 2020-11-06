@@ -16,7 +16,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'calorie',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -79,15 +79,16 @@ class App extends React.Component {
     });
   }
 
-  updateCalories(gender, age, weight, height, activity) {
+  updateCalories(inputData) {
+    const { gender, weight, height, age, activity } = inputData;
     let bmr = null;
-    if (gender === 'male') {
-      bmr = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age);
+    if (gender.value === 'Male') {
+      bmr = 66 + (6.3 * weight.value) + (12.9 * height.value) - (6.8 * age.value);
     } else {
-      bmr = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age);
+      bmr = 655 + (4.3 * weight.value) + (4.7 * height.value) - (4.7 * age.value);
     }
     let calories = null;
-    switch (activity) {
+    switch (activity.value) {
       case 'Sedentary':
         calories = bmr * 1.2;
         break;

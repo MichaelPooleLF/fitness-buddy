@@ -6,11 +6,11 @@ class CalorieCounter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      gender: 'default',
-      activity: 'default',
-      age: '',
-      weight: '',
-      height: '',
+      gender: { value: '', valid: null },
+      activity: { value: '', valid: null },
+      age: { value: '', valid: null },
+      weight: { value: '', valid: null },
+      height: { value: '', valid: null },
       calories: null,
       view: 'calorie'
     };
@@ -24,17 +24,17 @@ class CalorieCounter extends React.Component {
     const value = event.target.value;
     if (name === 'gender' || name === 'activity') {
       this.setState({
-        [name]: value
+        [name]: { value: value, valid: 'valid' }
       });
     } else {
       const parsedValue = parseInt(value);
       if (parsedValue) {
         this.setState({
-          [name]: parsedValue
+          [name]: { value: parsedValue, valid: 'valid' }
         });
       } else {
         this.setState({
-          [name]: ''
+          [name]: { value: '', valid: 'invalid' }
         });
       }
     }
@@ -42,19 +42,29 @@ class CalorieCounter extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault();
-    const age = this.state.age;
-    const weight = this.state.weight;
-    const height = this.state.height;
-    const gender = this.state.gender;
-    const activity = this.state.activity;
-    if (age && weight && height && activity && (this.state.gender !== 'default') && (this.state.activity !== 'default')) {
-      this.props.caloriesFunction(gender, age, weight, height, activity);
+    const form = event.target;
+    const inputs = {
+      age: this.state.age,
+      weight: this.state.weight,
+      height: this.state.height,
+      gender: this.state.gender,
+      activity: this.state.activity
+    };
+    if (form.checkValidity()) {
+      this.props.caloriesFunction(inputs);
       this.setState({
         calories: this.props.calories,
         view: 'result'
       });
     } else {
-      return null;
+      for (const property in inputs) {
+        if (!inputs[property].valid) {
+          inputs[property].valid = 'invalid';
+        }
+      }
+      this.setState({
+        inputs
+      });
     }
   }
 
@@ -63,11 +73,11 @@ class CalorieCounter extends React.Component {
   }
 
   render() {
-    const ageValue = this.state.age;
-    const weightValue = this.state.weight;
-    const heightValue = this.state.height;
-    const genderValue = this.state.gender;
-    const activityValue = this.state.activity;
+    const age = this.state.age;
+    const weight = this.state.weight;
+    const height = this.state.height;
+    const gender = this.state.gender;
+    const activity = this.state.activity;
     if (this.state.view === 'result') {
       return (
         <CalorieCounterResult
@@ -88,14 +98,18 @@ class CalorieCounter extends React.Component {
             <p className='col text-center'>{'Fill out the form and press "Submit" to calculate your daily calorie needs'}</p>
           </div>
           <div className="row">
-            <form className="col calorie-form" onSubmit={this.handleSubmit}>
+            <form className="col calorie-form" onSubmit={this.handleSubmit} noValidate>
               <div className="form-group row ">
                 <label htmlFor="gender" className="col-2 col-form-label">Gender</label>
                 <div className="col">
-                  <select className="form-control" name="gender" value={genderValue} onChange={this.handleChange}>
-                    <option disabled value="default">Select your gender</option>
-                    <option value="male">Male</option>
-                    <option value="female">Female</option>
+                  <select className={`form-control ${gender.valid}`}
+                    name="gender"
+                    value={gender.value}
+                    onChange={this.handleChange}
+                    required>
+                    <option disabled value="">Select your gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
                   </select>
                 </div>
               </div>
@@ -103,45 +117,53 @@ class CalorieCounter extends React.Component {
                 <label htmlFor="age" className='col-2 col-form-label'>Age</label>
                 <div className="col">
                   <input type="number"
-                    className="form-control"
+                    className={`form-control ${age.valid}`}
                     id="age" name="age"
                     placeholder="Please enter your age..."
-                    value={ageValue}
-                    onChange={this.handleChange}/>
+                    value={age.value}
+                    onChange={this.handleChange}
+                    required/>
                 </div>
               </div>
               <div className="form-group row ">
                 <label htmlFor="weight" className='col-2 col-form-label'>Weight</label>
                 <div className="col">
                   <input type="number"
-                    className="form-control"
+                    className={`form-control ${weight.valid}`}
                     id="weight" name="weight"
                     placeholder="Please enter your wieght in lbs..."
-                    value={weightValue}
-                    onChange={this.handleChange}/>
+                    value={weight.value}
+                    onChange={this.handleChange}
+                    required/>
                 </div>
               </div>
               <div className="form-group row ">
                 <label htmlFor="height" className='col-2 col-form-label'>Height</label>
                 <div className="col">
                   <input type="number"
-                    className="form-control"
+                    className={`form-control ${height.valid}`}
                     id="height" name="height"
                     placeholder="Please enter your height in inches..."
-                    value={heightValue}
-                    onChange={this.handleChange}/>
+                    value={height.value}
+                    onChange={this.handleChange}
+                    required/>
                 </div>
               </div>
               <div className="form-group row ">
                 <label className="col-2 col-form-label" htmlFor="activity">Activity Level</label>
                 <div className="col">
-                  <select className="form-control" name="activity" value={activityValue} onChange={this.handleChange}>
-                    <option className="calorie-option" disabled value="default">Select your level of activity</option>
-                    <option className="calorie-option" value="Sedentary">Sedentary</option>
-                    <option className="calorie-option" value="Lightly Active">Lightly Active (1-3 days a week)</option>
-                    <option className="calorie-option" value="Moderately Active">Moderately Active (3-5 days a week)</option>
-                    <option className="calorie-option" value="Very Active">Very Active (6-7 days a week)</option>
-                    <option className="calorie-option" value="Extra Active">Extra Active (7 days a week)</option>
+                  <select className={`form-control ${activity.valid}`}
+                    id="activity"
+                    name="activity"
+                    value={activity.value}
+                    onChange={this.handleChange}
+                    required>
+                    <option disabled value="">Select your level of activity</option>
+                    <option value="Sedentary">Sedentary</option>
+                    <option value="Lightly Active">Lightly Active (1-3 days a week)</option>
+                    <option value="Moderately Active">Moderately Active (3-5 days a week)</option>
+                    <option value="Very Active">Very Active (6-7 days a week)</option>
+                    <option value="Extra Active">Extra Active (7 days a week)</option>
                   </select>
                 </div>
               </div>

@@ -13,6 +13,14 @@
   background-color:  #4682B4;
 }
 
+.valid {
+  border: 1px solid #22EB54;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
 .bg-color-blue {
   background-color: #4682B4;
 }
@@ -80,10 +88,6 @@
   justify-content: center;
   flex-direction: column;
   text-align: right;
-}
-
-.calorie-option {
-  font-size: 12px;
 }
 
 .calorie-submit {
@@ -251,7 +255,7 @@
 }
 
 .green {
-  color: #28a745;
+  color: #22EB54;
 }
 
 .white {

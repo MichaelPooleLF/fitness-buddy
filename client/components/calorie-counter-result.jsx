@@ -11,11 +11,11 @@ function CalorieCounterResult(props) {
       >
         <div className="calorie-m-div">
           <h1>Calories Calculation</h1>
-          <p>Gender: {props.values.genderselect}</p>
-          <p>Age: {props.values.age}</p>
-          <p>Weight: {props.values.weight}</p>
-          <p>Height: {props.values.height} </p>
-          <p>Activity Level: {props.values.activitylevel}</p>
+          <p>Gender: {props.values.gender.value}</p>
+          <p>Age: {props.values.age.value}</p>
+          <p>Weight: {props.values.weight.value}</p>
+          <p>Height: {props.values.height.value} </p>
+          <p>Activity Level: {props.values.activity.value}</p>
         </div>
         <div>
           <h3>Your total daily calorie needs are:</h3>
