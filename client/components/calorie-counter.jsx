@@ -14,7 +14,7 @@ class CalorieCounter extends React.Component {
       weight: { value: '', validity: null },
       height: { value: '', validity: null },
       calories: this.props.calories,
-      view: 'result',
+      view: 'calorie',
       alreadySubmitted: false
     };
     this.handleChange = this.handleChange.bind(this);
