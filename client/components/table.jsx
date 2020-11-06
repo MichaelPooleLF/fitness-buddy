@@ -26,7 +26,7 @@ function Table(props) {
   }
 
   return (
-    <div className="overflow-auto container table-container">
+    <div className="container table-container">
       <table className="main-table">
         <tbody>
           {tableData}

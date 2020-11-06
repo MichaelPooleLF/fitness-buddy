@@ -4,7 +4,7 @@ import Table from './table';
 import TableDays from './table-days';
 import DefaultAndCustomModal from './default-and-custom-modal';
 import Custom from './custom';
-import DefaultList from './default-list';
+import DefaultList from './default-list-item';
 import Footer from './footer';
 import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
@@ -79,15 +79,16 @@ class App extends React.Component {
     });
   }
 
-  updateCalories(gender, age, weight, height, activity) {
+  updateCalories(inputData) {
+    const { gender, weight, height, age, activity } = inputData;
     let bmr = null;
-    if (gender === 'male') {
-      bmr = 66 + (6.3 * weight) + (12.9 * height) - (6.8 * age);
+    if (gender.value === 'Male') {
+      bmr = 66 + (6.3 * weight.value) + (12.9 * height.value) - (6.8 * age.value);
     } else {
-      bmr = 655 + (4.3 * weight) + (4.7 * height) - (4.7 * age);
+      bmr = 655 + (4.3 * weight.value) + (4.7 * height.value) - (4.7 * age.value);
     }
     let calories = null;
-    switch (activity) {
+    switch (activity.value) {
       case 'Sedentary':
         calories = bmr * 1.2;
         break;
@@ -200,12 +201,13 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <RecommendedCalories
-            resetCalories={this.resetCalories}
-            calories={this.state.calories}
-          />
-
-          <TableDays handleClick={this.handleClick}/>
+          <div className="stick-to-top">
+            <RecommendedCalories
+              resetCalories={this.resetCalories}
+              calories={this.state.calories}
+            />
+            <TableDays handleClick={this.handleClick}/>
+          </div>
           <Table
             day={this.state.day}
             exercises={this.state.exercises}
@@ -213,7 +215,6 @@ class App extends React.Component {
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
-
           <Footer setView={this.setView}/>
         </>
       );
@@ -225,43 +226,51 @@ class App extends React.Component {
             setView={this.setView}
             handleCancelClick={this.handleCancelClick}
           />
+          <Footer setView={this.setView}/>
         </>
       );
     } else if (this.state.view === 'default') {
       return (
         <>
+          <Header />
           <DefaultList
             list={this.state.defaultExercises}
             handleCancelClick={this.handleCancelClick}
             handleAddDefault={this.handleAddDefault}
           />
+          <Footer setView={this.setView} />
         </>
       );
     } else if (this.state.view === 'custom') {
       return (
         <>
+          <Header />
           <Custom setExercises={this.setExercises}
             updateExercises={this.updateExercises}
             activeCard={this.state.activeCard}
             handleCancelClick={this.handleCancelClick}
             day={this.state.day}
           />
+          <Footer setView={this.setView} />
         </>
       );
     } else if (this.state.view === 'update') {
       return (
         <>
+          <Header />
           <UpdateExercise
             setExercises={this.setExercises}
             handleCancelClick={this.handleCancelClick}
             exercise={this.state.activeCard}
             day={this.state.day}
           />
+          <Footer setView={this.setView} />
         </>
       );
     } else if (this.state.view === 'calorie') {
       return (
         <>
+          <Header />
           <CalorieCounter
             caloriesFunction={this.updateCalories}
             calories={this.state.calories}

@@ -3,7 +3,7 @@ import Exercises from './default-list-item-exercise';
 
 function DefaultListItem(props) {
   const headingsArray = [];
-  props.list.list.forEach(item => {
+  props.list.forEach(item => {
     if (headingsArray.indexOf(item.bodyPart) === -1) {
       headingsArray.push(item.bodyPart);
     }
@@ -19,7 +19,7 @@ function DefaultListItem(props) {
         </div>
         <div id={`collapse${index}`} className="collapse" data-parent="#accordionExample" aria-labelledby={`heading${index}`}>
           <div className="card-body">
-            <Exercises list={props.list.list} bodyPart={element} handleAddDefault={props.handleAddDefault}/>
+            <Exercises list={props.list} bodyPart={element} handleAddDefault={props.handleAddDefault}/>
           </div>
         </div>
       </div>
@@ -27,15 +27,8 @@ function DefaultListItem(props) {
   });
 
   return (
-    <div>
-      <div>
-        <div className="accordion" id="accordionExample">
-          {headers}
-        </div>
-      </div>
-      <div className="row justify-content-center mt-5">
-        <button className="btn btn-danger" onClick={props.list.handleCancelClick}>Return To Planner</button>
-      </div>
+    <div className="accordion" id="accordionExample">
+      {headers}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 import React from 'react';
 import UpdateAndDelete from './update-and-delete';
-import Description from './description';
 
 class TableRow extends React.Component {
   constructor(props) {
@@ -31,7 +30,7 @@ class TableRow extends React.Component {
               id={this.props.id} />
           </tr>
           <tr className="border-bottom border-primary">
-            <Description description={this.props.description} />
+            <td colSpan="2" className="py-2">{this.props.description}</td>
           </tr>
         </>
 
