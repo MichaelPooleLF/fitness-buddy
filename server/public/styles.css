@@ -1,4 +1,8 @@
 
+#root {
+  height: 85vh;
+}
+
 .header {
   width: 100%;
 }
@@ -56,6 +60,11 @@
   bottom: 0px;
 }
 
+.test-class {
+  display: flex;
+  flex-direction: column;
+}
+
 .footer-container {
   background-color: #4682B4;
   display: flex;
@@ -69,6 +78,13 @@
 
 .calorie-title {
   margin: 8% 0% 13% 0%;
+}
+
+.calorie-form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  text-align: right;
 }
 
 .calorie-option {
