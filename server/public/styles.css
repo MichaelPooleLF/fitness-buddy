@@ -99,12 +99,35 @@
   width: 49%;
 }
 
-.calorie-modal {
+.calorie-modal-container {
+  background-color: rgb(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 0;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000;
+}
+
+.calorie-modal-contents {
   background-color: rgb(234, 243, 255);
-  border: 2px solid #4682B4;
-  border-radius: 5px;
-  position: relative;
-  bottom: 4px;
+  /* width: 50%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+  padding: 3rem 1rem;
+  margin: 1rem;
+}
+
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
 }
 
 .calorie-return {

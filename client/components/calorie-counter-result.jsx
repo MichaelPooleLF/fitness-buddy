@@ -1,29 +1,22 @@
 import React from 'react';
-import Header from './header';
 
 function CalorieCounterResult(props) {
 
   return (
-    <div>
-      <Header />
-      <div
-        className="container text-center calorie-modal"
-      >
-        <div className="calorie-m-div">
-          <h1>Calories Calculation</h1>
-          <p>Gender: {props.values.gender.value}</p>
-          <p>Age: {props.values.age.value}</p>
-          <p>Weight: {props.values.weight.value}</p>
-          <p>Height: {props.values.height.value} </p>
-          <p>Activity Level: {props.values.activity.value}</p>
-        </div>
-        <div>
-          <h3>Your total daily calorie needs are:</h3>
-          <h1>{props.calories} Calories</h1>
-          <button className="btn btn-success calorie-return" onClick={props.handleClick}>Return</button>
+    <>
+      <div className="calorie-modal-container">
+        <div className="calorie-modal-contents">
+          <div>
+            <h3>Your total daily calorie needs are:</h3>
+            <h1>{props.calories} Calories</h1>
+            <div className="button-container">
+              <button className="btn btn-outline-primary mt-3" onClick={props.returnToCalculator}>Return to Calculator</button>
+              <button className="btn btn-outline-primary mt-3" onClick={props.returnToPlanner}>Return to Planner</button>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
+    </>
   );
 }
 
