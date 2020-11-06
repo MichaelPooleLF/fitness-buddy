@@ -27,7 +27,7 @@ function DefaultListItem(props) {
   });
 
   return (
-    <div>
+    <>
       <div>
         <div className="accordion" id="accordionExample">
           {headers}
@@ -36,7 +36,7 @@ function DefaultListItem(props) {
       <div className="row justify-content-center mt-5">
         <button className="btn btn-danger" onClick={props.list.handleCancelClick}>Return To Planner</button>
       </div>
-    </div>
+    </>
   );
 }
 

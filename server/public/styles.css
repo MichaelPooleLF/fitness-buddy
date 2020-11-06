@@ -1,6 +1,8 @@
 
 #root {
   height: 85vh;
+  overflow-x: hidden;
+  overflow-y: auto;
 }
 
 .header {

@@ -4,10 +4,10 @@ import DefaultListItem from './default-list-item';
 
 function DefaultList(props) {
   return (
-    <div>
+    <>
       <Header />
       <DefaultListItem list={props} handleAddDefault={props.handleAddDefault}/>
-    </div>
+    </>
   );
 }
 
