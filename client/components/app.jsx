@@ -8,7 +8,6 @@ import DefaultList from './default-list-item';
 import Footer from './footer';
 import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
-import CalorieCounterResult from './calorie-counter-result';
 import RecommendedCalories from './recommended-cal';
 import Stopwatch from './stopwatch';
 
@@ -16,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'choose',
       day: '1',
       exercises: [],
       defaultExercises: [],
@@ -277,13 +276,6 @@ class App extends React.Component {
             setView={this.setView}
           />
           <Footer setView={this.setView}/>
-
-        </>
-      );
-    } else if (this.state.view === 'result') {
-      return (
-        <>
-          <CalorieCounterResult/>
         </>
       );
     } else if (this.state.view === 'stopwatch') {

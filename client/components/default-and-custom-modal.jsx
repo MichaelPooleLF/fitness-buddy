@@ -1,34 +1,22 @@
 import React from 'react';
 
-class DefaultAndCustomModal extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handleDefaultClick = this.handleDefaultClick.bind(this);
-    this.handleCustomClick = this.handleCustomClick.bind(this);
-  }
-
-  handleDefaultClick() {
-    this.props.setView('default');
-  }
-
-  handleCustomClick() {
-    this.props.setView('custom');
-  }
-
-  render() {
-    return (
-      <div className="container">
-        <div className="card">
-          <div className="card-header text-center">Add Exercise</div>
-          <div className="card-body">
-            <p className="card-text text-center">Choose Default or Custom</p>
-            <a href="#" className="btn btn-success btn-block" onClick={this.handleDefaultClick}>Default</a>
-            <a href="#" className="btn btn-success btn-block" onClick={this.handleCustomClick}>Custom</a>
-          </div>
-        </div>
+function DefaultAndCustomModal(props) {
+  return (
+    <div className="container stretch">
+      <div className="row">
+        <button className="btn btn-outline-primary choose-screen-button"
+          onClick={() => props.setView('default')}>
+          Add a Pre-Made Exercise
+        </button>
       </div>
-    );
-  }
+      <div className="row mt-5">
+        <button className="btn btn-outline-primary choose-screen-button"
+          onClick={() => props.setView('custom')}>
+          Create and Add an Exercise
+        </button>
+      </div>
+    </div>
+  );
 }
 
 export default DefaultAndCustomModal;
