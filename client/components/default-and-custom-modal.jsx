@@ -2,14 +2,18 @@ import React from 'react';
 
 function DefaultAndCustomModal(props) {
   return (
-    <div className="container">
-      <div className="card">
-        <div className="card-header text-center">Add Exercise</div>
-        <div className="card-body">
-          <p className="card-text text-center">Choose Default or Custom</p>
-          <a href="#" className="btn btn-success btn-block" onClick={() => props.setView('default')}>Default</a>
-          <a href="#" className="btn btn-success btn-block" onClick={() => props.setView('custom')}>Custom</a>
-        </div>
+    <div className="container stretch">
+      <div className="row">
+        <button className="btn btn-outline-primary choose-screen-button"
+          onClick={() => props.setView('default')}>
+          Add a Pre-Made Exercise
+        </button>
+      </div>
+      <div className="row mt-5">
+        <button className="btn btn-outline-primary choose-screen-button"
+          onClick={() => props.setView('custom')}>
+          Create and Add an Exercise
+        </button>
       </div>
     </div>
   );
