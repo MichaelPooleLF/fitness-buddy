@@ -27,7 +27,7 @@ function DefaultListItem(props) {
   });
 
   return (
-    <div className="accordion" id="accordionExample">
+    <div className="accordion container" id="accordionExample">
       {headers}
     </div>
   );
