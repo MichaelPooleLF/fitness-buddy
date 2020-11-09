@@ -15,8 +15,8 @@ class Custom extends React.Component {
   }
 
   componentDidMount() {
-    const name = this.props.activeCard.exercise;
-    const desc = this.props.activeCard.description;
+    const name = this.props.activeExercise.exercise;
+    const desc = this.props.activeExercise.description;
     this.setState({
       name,
       desc

@@ -16,19 +16,20 @@ class App extends React.Component {
     super(props);
     this.state = {
       view: 'table',
-      day: '1',
-      exercises: [],
-      defaultExercises: [],
-      activeCard: {
+      day: '1', // day corresponds to day of the week, where 1 = sunday, 2 = monday, etc.
+      exercises: [], // array of objects representing exercises user has added to the current day
+      defaultExercises: [], // array of objects representing default exercises in our database
+      activeExercise: { // stores data of exercise clicked by user
+        day: '1',
         exercise: '',
         description: ''
       },
       message: null,
       isLoading: true,
-      calories: 1935
+      calories: 1935 // user daily recommended calories
     };
     this.setDay = this.setDay.bind(this);
-    this.handleClick = this.handleClick.bind(this);
+    this.handleDayClick = this.handleDayClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.updateExercises = this.updateExercises.bind(this);
@@ -41,11 +42,13 @@ class App extends React.Component {
     this.resetCalories = this.resetCalories.bind(this);
   }
 
+  // gets list of exercises for Sunday and stores list of default exercises in state
   componentDidMount() {
     this.setExercises(this.state.day);
     this.getDefaultExercises();
   }
 
+  // fetches list of default exercises from database, returning an array of objects
   getDefaultExercises() {
     fetch('/api/routine')
       .then(result => result.json())
@@ -54,12 +57,8 @@ class App extends React.Component {
       });
   }
 
-  setView(newView) {
-    this.setState({
-      view: newView
-    });
-  }
-
+  // fetches list of exercises for a specific day, returning an array of objects
+  // dayId is a string representing a number between 1 & 7.
   setExercises(dayId) {
     fetch(`/api/routine/day/${dayId}`)
       .then(result => result.json())
@@ -69,11 +68,28 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  // changes view in state, representing user navigating to different pages in the app.
+  setView(newView) {
+    this.setState({
+      view: newView
+    });
+  }
+
+  // method to switch between different day's list of exercises on click.
+  handleDayClick(event) {
+    const dayId = event.currentTarget.getAttribute('id');
+    this.setDay(dayId);
+    this.setExercises(dayId);
+  }
+
+  // method to set day in state.
   setDay(dayId) {
     this.setState({
       day: dayId,
-      activeCard: {
-        day: dayId
+      activeExercise: {
+        day: dayId,
+        exercise: '',
+        description: ''
       }
     });
   }
@@ -116,16 +132,10 @@ class App extends React.Component {
       .then(data => this.setState({ calories: data.recommendedCalories }));
   }
 
-  handleClick(event) {
-    const dayId = event.currentTarget.getAttribute('id');
-    this.setDay(dayId);
-    this.setExercises(dayId);
-  }
-
   handleCancelClick() {
     this.setState({
       view: 'table',
-      activeCard: {
+      activeExercise: {
         exercise: '',
         description: ''
       }
@@ -144,7 +154,7 @@ class App extends React.Component {
     exercises.forEach(element => {
       if (element.customExerciseId === currentExerciseId) {
         this.setState({
-          activeCard: element
+          activeExercise: element
         });
       }
     });
@@ -157,7 +167,7 @@ class App extends React.Component {
       const name = target.firstElementChild.firstElementChild.textContent;
       const desc = target.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.textContent;
       this.setState({
-        activeCard: {
+        activeExercise: {
           exercise: name,
           description: desc
         }
@@ -205,7 +215,7 @@ class App extends React.Component {
               resetCalories={this.resetCalories}
               calories={this.state.calories}
             />
-            <TableDays handleClick={this.handleClick}/>
+            <TableDays handleClick={this.handleDayClick}/>
           </div>
           <Table
             day={this.state.day}
@@ -246,7 +256,7 @@ class App extends React.Component {
           <Header />
           <Custom setExercises={this.setExercises}
             updateExercises={this.updateExercises}
-            activeCard={this.state.activeCard}
+            activeExercise={this.state.activeExercise}
             handleCancelClick={this.handleCancelClick}
             day={this.state.day}
           />
@@ -260,7 +270,7 @@ class App extends React.Component {
           <UpdateExercise
             setExercises={this.setExercises}
             handleCancelClick={this.handleCancelClick}
-            exercise={this.state.activeCard}
+            exercise={this.state.activeExercise}
             day={this.state.day}
           />
           <Footer setView={this.setView} />
