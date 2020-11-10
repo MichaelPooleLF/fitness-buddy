@@ -1,59 +1,61 @@
-import React from 'react';
+import React, { useState } from 'react';
 import UpdateAndDelete from './update-and-delete';
 
-class TableRow extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      routine: [],
-      isClicked: false
-    };
-    this.showDescription = this.showDescription.bind(this);
+// returns a row of table data with or without description depending on clicked status
+function TableRow(props) {
+  // constructor(props) {
+  //   super(props);
+  //   this.state = {
+  //     routine: [],
+  //     isClicked: false
+  //   };
+  //   this.showDescription = this.showDescription.bind(this);
+  // }
+
+  // showDescription() {
+  //   this.setState({ isClicked: !this.state.isClicked });
+  // }
+  const [clicked, setClicked] = useState(false);
+
+  // render() {
+  if (clicked === true) {
+    return (
+
+      <>
+        <tr className="border-bottom border-primary">
+          <td onClick={() => setClicked(!clicked)}
+            className="cursor-pointer">{props.name}</td>
+          <UpdateAndDelete
+            onClick={() => setClicked(!clicked)}
+            handleDeleteClick={props.handleDeleteClick}
+            handleUpdateClick={props.handleUpdateClick}
+            id={props.id} />
+        </tr>
+        <tr className="border-bottom border-primary">
+          <td colSpan="2" className="py-2">{props.description}</td>
+        </tr>
+      </>
+
+    );
+  } else {
+    return (
+
+      <>
+        <tr className="border-bottom">
+          <td onClick={() => setClicked(!clicked)}
+            className="cursor-pointer">{props.name}</td>
+          <UpdateAndDelete
+            onClick={() => setClicked(!clicked)}
+            handleDeleteClick={props.handleDeleteClick}
+            handleUpdateClick={props.handleUpdateClick}
+            id={props.id}
+          />
+        </tr>
+      </>
+
+    );
   }
-
-  showDescription() {
-    this.setState({ isClicked: !this.state.isClicked });
-  }
-
-  render() {
-    if (this.state.isClicked === true) {
-      return (
-
-        <>
-          <tr className="border-bottom border-primary">
-            <td onClick={this.showDescription}
-              className="cursor-pointer">{this.props.name}</td>
-            <UpdateAndDelete
-              onClick={this.handleClick}
-              handleDeleteClick={this.props.handleDeleteClick}
-              handleUpdateClick={this.props.handleUpdateClick}
-              id={this.props.id} />
-          </tr>
-          <tr className="border-bottom border-primary">
-            <td colSpan="2" className="py-2">{this.props.description}</td>
-          </tr>
-        </>
-
-      );
-    } else {
-      return (
-
-        <>
-          <tr className="border-bottom">
-            <td onClick={this.showDescription}
-              className="cursor-pointer">{this.props.name}</td>
-            <UpdateAndDelete
-              onClick={this.handleClick}
-              handleDeleteClick={this.props.handleDeleteClick}
-              handleUpdateClick={this.props.handleUpdateClick}
-              id={this.props.id}
-            />
-          </tr>
-        </>
-
-      );
-    }
-  }
+  // }
 }
 
 export default TableRow;
