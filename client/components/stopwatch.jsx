@@ -177,6 +177,7 @@ class Stopwatch extends React.Component {
           values={this.state} />
       );
     }
+
     if (this.state.timer === 'Rest') {
       if (this.state.isClicked === 'Set Time') {
         return (
@@ -188,6 +189,7 @@ class Stopwatch extends React.Component {
             <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
           </div>
         );
+
       } else {
         return (
           <div className="clock-container">
@@ -199,6 +201,7 @@ class Stopwatch extends React.Component {
           </div>
         );
       }
+
     } else {
       if (this.state.isClicked === 'Set Time') {
         return (
@@ -210,6 +213,7 @@ class Stopwatch extends React.Component {
             <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
           </div>
         );
+
       } else {
         return (
           <div className="clock-container">
