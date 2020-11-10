@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './header';
 import Table from './table';
 import TableDays from './table-days';
-import DefaultAndCustomModal from './default-and-custom-modal';
+import DefaultAndCustomModal from './add-exercise';
 import Custom from './custom';
 import DefaultList from './default-list-item';
 import Footer from './footer';
@@ -21,7 +21,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'table',
+      view: 'add',
       day: '1', // day corresponds to day of the week, where 1 = sunday, 2 = monday, etc.
       exercises: [], // array of objects representing exercises user has added to the current day
       defaultExercises: [], // array of objects representing default exercises in our database
@@ -306,6 +306,21 @@ class App extends React.Component {
           <Header />
           <Stopwatch setView={this.setView}/>
           <Footer setView={this.setView} activeIcon={this.state.view}/>
+        </>
+      );
+    } else if (this.state.view === 'add') {
+      return (
+        <>
+          <Header />
+          <DefaultAndCustomModal
+            list={this.state.defaultExercises}
+            handleAddDefault={this.handleAddDefault}
+            setExercises={this.setExercises}
+            updateExercises={this.updateExercises}
+            activeExercise={this.state.activeExercise}
+            day={this.state.day}
+          />
+          <Footer setView={this.setView} activeIcon={this.state.view} />
         </>
       );
     }
