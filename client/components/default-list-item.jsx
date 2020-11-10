@@ -3,7 +3,7 @@ import Exercises from './default-list-item-exercise';
 
 // represents accordion of body parts, each with an accordion of exercise
 function DefaultListItem(props) {
-  const headingsArray = []; // note: try making this a Set.
+  const headingsArray = []; // note: try making this a Set
 
   // checks if headingsArray already contains the body part and if not, adds it
   props.list.forEach(item => {

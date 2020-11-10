@@ -3,7 +3,7 @@ import React from 'react';
 function CalorieForm(props) {
 
   // extract variables for form. Each variable represents an object with a
-  // value property and a validity property.
+  // value property and a validity property
   const { age, weight, height, gender, activity } = props.userData;
 
   return (

@@ -15,8 +15,8 @@ class Custom extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  // component setting the name and description to passed in props.
-  // will be used to combine update exercise and custom exercise pages.
+  // component setting the name and description to passed in props
+  // will be used to combine update exercise and custom exercise pages
   componentDidMount() {
     const name = this.props.activeExercise.exercise;
     const desc = this.props.activeExercise.description;
@@ -26,7 +26,7 @@ class Custom extends React.Component {
     });
   }
 
-  // updates state to exercise name input by user.
+  // updates state to exercise name input by user
   // candidate for merging with handleDescChange
   handleNameChange(event) {
     const updatedText = event.currentTarget.value;
@@ -35,8 +35,8 @@ class Custom extends React.Component {
     });
   }
 
-  // updates state to exercise description input by user.
-  // candidate for merging with handleNameChange.
+  // updates state to exercise description input by user
+  // candidate for merging with handleNameChange
   handleDescChange(event) {
     const updatedText = event.currentTarget.value;
     this.setState({
@@ -44,9 +44,11 @@ class Custom extends React.Component {
     });
   }
 
-  // checks that user has input exercise name and description, adds exercise to
-  // database, then brings user back to table. Otherwise, nothing happens
-  // note: will add validity functionality to this component.
+  /* checks that user has input exercise name and description, adds exercise to
+  * database, then brings user back to table. Otherwise, nothing happens
+  *
+  * note: will add validity functionality to this component
+  */
   handleSubmit(event) {
     event.preventDefault();
     if (this.state.name && this.state.desc) {

@@ -1,17 +1,17 @@
 import React from 'react';
 import TimerModal from './timer-modal';
 
-// component contains workout stopwatch to time workout and rest periods.
+// component contains workout stopwatch to time workout and rest periods
 class Stopwatch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       timer: 'Workout', // valid values: "Workout", "Rest"
       view: 'stopwatch', // valid values: "stopwatch", "timer-modal"
-      workoutMin: '00', // input type: number. default value is a string.
-      workoutSec: '00', // input type: number. default value is a string.
-      restMin: '00', // input type: number. default value is a string.
-      restSec: '00', // input type: number. default value is a string.
+      workoutMin: '00', // input type: number. default value is a string
+      workoutSec: '00', // input type: number. default value is a string
+      restMin: '00', // input type: number. default value is a string
+      restSec: '00', // input type: number. default value is a string
       isClicked: 'Set Time' // valid values: "Set Time", "Reset"
     };
     this.countdown = this.countdown.bind(this);
@@ -34,7 +34,7 @@ class Stopwatch extends React.Component {
         });
 
         // if user is trying to reset the timer, will reset state to default
-        // and clear the timer intervals.
+        // and clear the timer intervals
       } else {
         this.setState({
           timer: 'Workout',
@@ -64,8 +64,8 @@ class Stopwatch extends React.Component {
     this.setState({ [name]: value });
   }
 
-  // if user sets the time, changes set time button to reset. otherwise, changes
-  // reset button to set time.
+  // if user sets the time, changes "Set Time" button to "Reset". otherwise, changes
+  // "Reset" button to "Set Time"
   isClicked() {
     if (this.state.isClicked === 'Set Time') {
       this.setState({ isClicked: 'Reset' });

@@ -12,8 +12,8 @@ import RecommendedCalories from './recommended-cal';
 import Stopwatch from './stopwatch';
 
 /*
-* This is an app for users to organize their exercises for the week.
-* users can add, update, and delete exercises for each day.
+* this is an app for users to organize their exercises for the week
+* users can add, update, and delete exercises for each day
 * users can calculate their daily calorie needs
 * users can use a timer to time their workout and rest periods
 */
@@ -34,7 +34,6 @@ class App extends React.Component {
       isLoading: true,
       calories: 1935 // user daily recommended calories
     };
-    // this.setDay = this.setDay.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
@@ -64,7 +63,7 @@ class App extends React.Component {
   }
 
   // fetches list of exercises for a specific day, returning an array of objects
-  // dayId is a string representing a number between 1 & 7.
+  // dayId is a string representing a number between 1 & 7
   setExercises(dayId) {
     fetch(`/api/routine/day/${dayId}`)
       .then(result => result.json())
@@ -80,14 +79,14 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  // changes view in state, representing user navigating to different pages in the app.
+  // changes view in state, representing user navigating to different pages in the app
   setView(newView) {
     this.setState({
       view: newView
     });
   }
 
-  // method to switch between different day's list of exercises on click.
+  // method to switch between different day's list of exercises on click
   handleDayClick(event) {
     const dayId = event.currentTarget.getAttribute('id');
     this.setExercises(dayId);
@@ -144,7 +143,7 @@ class App extends React.Component {
     });
   }
 
-  // Used to set calories in state to null, effectively hiding rec calories from view in app.
+  // ssed to set calories in state to null, effectively hiding rec calories from view in app
   resetCalories() {
     this.setState({
       calories: null
@@ -184,13 +183,13 @@ class App extends React.Component {
   }
 
   // method used to add exercises to each day, updating state and table with
-  // new exercise.
+  // new exercise
   updateExercises(exercise) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
     exercises.push(exercise);
   }
 
-  // deletes exercise from current exercise list in state upon successful deletion.
+  // deletes exercise from current exercise list in state upon successful deletion
   handleDeleteClick(event) {
     const exercises = this.state.exercises.map(item => ({ ...item }));
     const itemId = event.currentTarget.getAttribute('id');

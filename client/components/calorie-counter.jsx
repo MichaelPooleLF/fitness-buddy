@@ -7,8 +7,8 @@ class CalorieCounter extends React.Component {
     super(props);
     this.state = {
       /*
-      * the first 5 properties represent the value of the form inputs and whether or not the input is valid.
-      * null represents default form borders. Other accaptable values for validity are strings "valid" and "invalid"
+      * the first 5 properties represent the value of the form inputs and whether or not the input is valid
+      * null represents default form borders. other accaptable values for validity are strings "valid" and "invalid"
       * valid input types for gender and activity are strings
       * valid input types for age, weight, and height are numbers. if no input by user, they default to ""
       */
@@ -29,13 +29,14 @@ class CalorieCounter extends React.Component {
   }
 
   /*
-  * updates values in state with value entered by user.
+  * updates values in state with value entered by user
   * name represents name of input, value = the input's value,
-  * validity is either string "valid" or string "invalid", formIsValid is a boolean.
+  * validity is either string "valid" or string "invalid", formIsValid is a boolean
   * if all values are valid, calculates daily rec calories and rerenders, passing
-  * calculated calories through props.
+  * calculated calories through props
+  *
   * bug: calories are set in app state before submission. remove caloriesFunction from
-  * updateData and add to handleSubmit.
+  * updateData and add to handleSubmit
   */
   updateData(name, value, validity, formIsValid) {
     this.setState({
@@ -47,7 +48,7 @@ class CalorieCounter extends React.Component {
     });
   }
 
-  // grabs user generated data from form inputs and updates state.
+  // grabs user generated data from form inputs and updates state
   handleChange(event) {
     const form = event.currentTarget;
     const formIsValid = form.checkValidity();
@@ -61,7 +62,7 @@ class CalorieCounter extends React.Component {
       }
       this.updateData(name, value, 'valid', formIsValid);
       // if form was already submitted and value is falsy, updates state and input value
-      // to invalid, generating red border on input field.
+      // to invalid, generating red border on input field
     } else if (this.state.alreadySubmitted) {
       this.updateData(name, value, 'invalid', formIsValid);
     } else if (this.state[name].validity) {
@@ -69,8 +70,8 @@ class CalorieCounter extends React.Component {
     }
   }
 
-  // checks if form has all valid entries.
-  // if it does, sets the calories and changes the view to show the model.
+  // checks if form has all valid entries
+  // if it does, sets the calories and changes the view to show the model
   // otherwise, sets currently null input values as "invalid"
   handleSubmit(event) {
     event.preventDefault();
