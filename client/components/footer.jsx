@@ -7,7 +7,7 @@ function Footer(props) {
     { image: 'fas fa-calendar-alt', path: 'table', color: '', active: '' },
     { image: 'fas fa-apple-alt', path: 'calorie', color: '', active: '' },
     { image: 'fas fa-clock', path: 'stopwatch', color: '', active: '' },
-    { image: 'fas fa-plus', path: 'choose', color: 'green', active: '' }
+    { image: 'fas fa-plus', path: 'add-home', color: 'green', active: '' }
   ];
 
   icons.forEach(icon => {
@@ -32,18 +32,6 @@ function Footer(props) {
     <div className="footer">
       <div className="container footer-container responsive-x-padding">
         {iconElementArray}
-        {/* <i className="fas fa-calendar-alt size-icon cursor-pointer icon-hover"
-          onClick={() => { props.setView('table'); }}>
-        </i>
-        <i className="fas fa-apple-alt size-icon cursor-pointer icon-hover"
-          onClick={() => { props.setView('calorie'); }}>
-        </i>
-        <i className="fas fa-clock size-icon cursor-pointer icon-hover"
-          onClick={() => { props.setView('stopwatch'); }}>
-        </i>
-        <i className="fas fa-plus size-icon cursor-pointer icon-hover green"
-          onClick={() => props.setView('choose')}>
-        </i> */}
       </div>
     </div>
   );
