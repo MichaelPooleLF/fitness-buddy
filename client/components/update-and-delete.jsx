@@ -3,7 +3,7 @@ import React from 'react';
 function UpdateAndDelete(props) {
 
   return (
-    <td className="update-and-delete">
+    <td className="update-and-delete cursor-pointer" onClick={props.showDescription}>
       <button
         type="button"
         id={props.id}
