@@ -127,6 +127,7 @@ class App extends React.Component {
       .then(data => this.setState({ calories: data.recommendedCalories }));
   }
 
+  // used to set view back to table. Candidate for merging with previous view method
   handleCancelClick() {
     this.setState({
       view: 'table',
@@ -137,12 +138,15 @@ class App extends React.Component {
     });
   }
 
+  // Used to set calories in state to null, effectively hiding rec calories from view in app.
   resetCalories() {
     this.setState({
       calories: null
     });
   }
 
+  // method matches exercise clicked with exercise in state and set it to the activeExercise
+  // so pass to our update component
   handleUpdateClick(event) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
     const currentExerciseId = parseInt(event.currentTarget.getAttribute('id'), 10);
@@ -156,6 +160,8 @@ class App extends React.Component {
     this.setView('update');
   }
 
+  // finds default exercise information based on exercise clicked in default list
+  // and sets it to activeExercise to be passed to our custom component
   handleAddDefault(event) {
     if (event.target.tagName === 'BUTTON') {
       const target = event.currentTarget;
@@ -171,11 +177,14 @@ class App extends React.Component {
     }
   }
 
+  // method used to add exercises to each day, updating state and table with
+  // new exercise.
   updateExercises(exercise) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
     exercises.push(exercise);
   }
 
+  // deletes exercise from current exercise list in state upon successful deletion.
   handleDeleteClick(event) {
     const exercises = this.state.exercises.map(item => ({ ...item }));
     const itemId = event.currentTarget.getAttribute('id');
@@ -201,6 +210,8 @@ class App extends React.Component {
   }
 
   render() {
+
+    // sets view to table of user-added exercises
     if (this.state.view === 'table') {
       return (
         <>
@@ -222,6 +233,8 @@ class App extends React.Component {
           <Footer setView={this.setView}/>
         </>
       );
+
+      // sets view to page where user can choose to add a default exercise or one of their own
     } else if (this.state.view === 'choose') {
       return (
         <>
@@ -233,6 +246,8 @@ class App extends React.Component {
           <Footer setView={this.setView}/>
         </>
       );
+
+      // sets view to page showing a list of default exercises to pick from
     } else if (this.state.view === 'default') {
       return (
         <>
@@ -245,6 +260,8 @@ class App extends React.Component {
           <Footer setView={this.setView} />
         </>
       );
+
+      // sets view to page where user can add their own exercises
     } else if (this.state.view === 'custom') {
       return (
         <>
@@ -258,6 +275,8 @@ class App extends React.Component {
           <Footer setView={this.setView} />
         </>
       );
+
+      // sets view to page where user can update an exercise on their list
     } else if (this.state.view === 'update') {
       return (
         <>
@@ -271,6 +290,8 @@ class App extends React.Component {
           <Footer setView={this.setView} />
         </>
       );
+
+      // sets view to our calorie calculator form
     } else if (this.state.view === 'calorie') {
       return (
         <>
@@ -283,6 +304,8 @@ class App extends React.Component {
           <Footer setView={this.setView}/>
         </>
       );
+
+      // sets view to a stopwatch users can use to time their workout and rest periods
     } else if (this.state.view === 'stopwatch') {
       return (
         <>
