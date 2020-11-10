@@ -235,7 +235,7 @@ class App extends React.Component {
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
-          <Footer setView={this.setView}/>
+          <Footer setView={this.setView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -248,7 +248,7 @@ class App extends React.Component {
             setView={this.setView}
             handleCancelClick={this.handleCancelClick}
           />
-          <Footer setView={this.setView}/>
+          <Footer setView={this.setView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -262,7 +262,7 @@ class App extends React.Component {
             handleCancelClick={this.handleCancelClick}
             handleAddDefault={this.handleAddDefault}
           />
-          <Footer setView={this.setView} />
+          <Footer setView={this.setView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -277,7 +277,7 @@ class App extends React.Component {
             handleCancelClick={this.handleCancelClick}
             day={this.state.day}
           />
-          <Footer setView={this.setView} />
+          <Footer setView={this.setView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -292,7 +292,7 @@ class App extends React.Component {
             exercise={this.state.activeExercise}
             day={this.state.day}
           />
-          <Footer setView={this.setView} />
+          <Footer setView={this.setView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -306,7 +306,7 @@ class App extends React.Component {
             calories={this.state.calories}
             setView={this.setView}
           />
-          <Footer setView={this.setView}/>
+          <Footer setView={this.setView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -316,7 +316,7 @@ class App extends React.Component {
         <>
           <Header />
           <Stopwatch setView={this.setView}/>
-          <Footer setView={this.setView}/>
+          <Footer setView={this.setView} activeIcon={this.state.view}/>
         </>
       );
     }
