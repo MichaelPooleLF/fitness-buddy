@@ -28,7 +28,7 @@ class App extends React.Component {
       isLoading: true,
       calories: 1935 // user daily recommended calories
     };
-    this.setDay = this.setDay.bind(this);
+    // this.setDay = this.setDay.bind(this);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
@@ -63,7 +63,13 @@ class App extends React.Component {
     fetch(`/api/routine/day/${dayId}`)
       .then(result => result.json())
       .then(data => this.setState({
-        exercises: data
+        exercises: data,
+        day: dayId,
+        activeExercise: {
+          day: dayId,
+          exercise: '',
+          description: ''
+        }
       }))
       .catch(err => console.error(err));
   }
@@ -78,22 +84,11 @@ class App extends React.Component {
   // method to switch between different day's list of exercises on click.
   handleDayClick(event) {
     const dayId = event.currentTarget.getAttribute('id');
-    this.setDay(dayId);
     this.setExercises(dayId);
   }
 
-  // method to set day in state.
-  setDay(dayId) {
-    this.setState({
-      day: dayId,
-      activeExercise: {
-        day: dayId,
-        exercise: '',
-        description: ''
-      }
-    });
-  }
-
+  // calculates recommended daily calories based on calorie-counter user input
+  // inputData parameter is an object with gender, weight, height, age, and activity
   updateCalories(inputData) {
     const { gender, weight, height, age, activity } = inputData;
     let bmr = null;
