@@ -344,6 +344,10 @@
   justify-content: center;
 }
 
+.active {
+  background-color: rgb(224, 133, 13);
+}
+
 textarea {
   resize: none;
 }

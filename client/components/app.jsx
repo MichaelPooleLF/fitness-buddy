@@ -226,7 +226,7 @@ class App extends React.Component {
               resetCalories={this.resetCalories}
               calories={this.state.calories}
             />
-            <TableDays handleClick={this.handleDayClick}/>
+            <TableDays handleClick={this.handleDayClick} activeDay={this.state.day}/>
           </div>
           <Table
             day={this.state.day}
