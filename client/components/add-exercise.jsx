@@ -11,12 +11,16 @@ function AddExercise(props) {
     setView('custom');
   }
 
-  function back() {
+  function back(newView) {
     props.resetActiveExercise();
-    setView('add-home');
+    if (newView === 'add-home') {
+      setView(newView);
+    } else {
+      props.backToPlanner();
+    }
   }
 
-  if (view === 'add-home') {
+  if (view === 'add-home' && !props.update) {
     return (
       <div className="container stretch">
         <div className="row">
@@ -35,6 +39,19 @@ function AddExercise(props) {
     );
   }
 
+  if (props.update) {
+    return (
+      <AddExerciseForm
+        header={'Update Exercise'}
+        day={props.activeExercise.day}
+        exercise={props.activeExercise.exercise}
+        description={props.activeExercise.description}
+        setExercise={props.setExercise}
+        back={() => back('table')}
+      />
+    );
+  }
+
   if (view === 'custom') {
     return (
       <AddExerciseForm
@@ -43,7 +60,7 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercise}
-        back={back}
+        back={() => back('add-home')}
       />
     );
   }

@@ -7,7 +7,7 @@ function Footer(props) {
     { image: 'fas fa-calendar-alt', path: 'table', color: '', active: '' },
     { image: 'fas fa-apple-alt', path: 'calorie', color: '', active: '' },
     { image: 'fas fa-clock', path: 'stopwatch', color: '', active: '' },
-    { image: 'fas fa-plus', path: 'add', color: 'green', active: '' }
+    { image: 'fas fa-plus', path: 'add-home', color: 'green', active: '' }
   ];
 
   icons.forEach(icon => {
