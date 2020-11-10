@@ -1,5 +1,6 @@
 import React from 'react';
 
+// component contains app footer with icons to change to different pages of the app
 function Footer(props) {
   return (
     <div className="footer">

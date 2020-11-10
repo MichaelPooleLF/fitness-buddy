@@ -1,18 +1,31 @@
 import React from 'react';
 
 function CalorieForm(props) {
+
+  // extract variables for form. Each variable represents an object with a
+  // value property and a validity property.
   const { age, weight, height, gender, activity } = props.userData;
 
   return (
+    // start component container
     <div className="container text-center">
-      <div className="row my-3">
+      {/* Form Header */}
+      <header className="row my-3">
         <h1 className="col">Calorie Calculator</h1>
-      </div>
+      </header>
+      {/* end Form Header */}
+
+      {/* prompts user to fill out and submit form */}
       <div className="row">
         <p className='col text-center'>{'Fill out the form and press "Submit" to calculate your daily calorie needs'}</p>
       </div>
+      {/* end prompt */}
+
+      {/* row containig calorie form */}
       <div className="row">
         <form className="col calorie-form" onSubmit={props.handleSubmit} onChange={props.handleChange} noValidate>
+
+          {/* gender input */}
           <div className="form-group row ">
             <label htmlFor="gender" className="col-2 col-form-label">Gender</label>
             <div className="col">
@@ -26,6 +39,8 @@ function CalorieForm(props) {
               </select>
             </div>
           </div>
+
+          {/* age input */}
           <div className="form-group row ">
             <label htmlFor="age" className='col-2 col-form-label'>Age</label>
             <div className="col">
@@ -37,6 +52,8 @@ function CalorieForm(props) {
                 required />
             </div>
           </div>
+
+          {/* weight input */}
           <div className="form-group row ">
             <label htmlFor="weight" className='col-2 col-form-label'>Weight</label>
             <div className="col">
@@ -48,6 +65,8 @@ function CalorieForm(props) {
                 required />
             </div>
           </div>
+
+          {/* height input */}
           <div className="form-group row ">
             <label htmlFor="height" className='col-2 col-form-label'>Height</label>
             <div className="col">
@@ -59,6 +78,8 @@ function CalorieForm(props) {
                 required />
             </div>
           </div>
+
+          {/* activity input */}
           <div className="form-group row ">
             <label className="col-2 col-form-label" htmlFor="activity">Activity Level</label>
             <div className="col">
@@ -76,12 +97,17 @@ function CalorieForm(props) {
               </select>
             </div>
           </div>
+
+          {/* submit button */}
           <div className="col text-center">
             <button className="btn btn-success btn-lg">Submit</button>
           </div>
         </form>
       </div>
+      {/* end form row */}
+
     </div>
+    // end component container
   );
 }
 

@@ -1,5 +1,7 @@
 import React from 'react';
 
+// returns row of clickable days of the week. on click, will update table with clicked day's
+// exercises
 function TableDays(props) {
 
   return (

@@ -6,14 +6,20 @@ class CalorieCounter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      /*
+      * the first 5 properties represent the value of the form inputs and whether or not the input is valid.
+      * null represents default form borders. Other accaptable values for validity are strings "valid" and "invalid"
+      * valid input types for gender and activity are strings
+      * valid input types for age, weight, and height are numbers. if no input by user, they default to ""
+      */
       gender: { value: '', validity: null },
       activity: { value: '', validity: null },
       age: { value: '', validity: null },
       weight: { value: '', validity: null },
       height: { value: '', validity: null },
       calories: this.props.calories,
-      view: 'calorie',
-      alreadySubmitted: false
+      view: 'calorie', // valid view values are "calorie" and "result"
+      alreadySubmitted: false // changes to true when user first tries to submit the form
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,6 +28,15 @@ class CalorieCounter extends React.Component {
     this.updateData = this.updateData.bind(this);
   }
 
+  /*
+  * updates values in state with value entered by user.
+  * name represents name of input, value = the input's value,
+  * validity is either string "valid" or string "invalid", formIsValid is a boolean.
+  * if all values are valid, calculates daily rec calories and rerenders, passing
+  * calculated calories through props.
+  * bug: calories are set in app state before submission. remove caloriesFunction from
+  * updateData and add to handleSubmit.
+  */
   updateData(name, value, validity, formIsValid) {
     this.setState({
       [name]: { value: value, validity: validity }
@@ -32,6 +47,7 @@ class CalorieCounter extends React.Component {
     });
   }
 
+  // grabs user generated data from form inputs and updates state.
   handleChange(event) {
     const form = event.currentTarget;
     const formIsValid = form.checkValidity();
@@ -39,10 +55,13 @@ class CalorieCounter extends React.Component {
     const type = event.target.type;
     let value = event.target.value;
     if (value) {
+      // sets value to a number if input type is strictly equal to string "number"
       if (type === 'number') {
         value = parseInt(value);
       }
       this.updateData(name, value, 'valid', formIsValid);
+      // if form was already submitted and value is falsy, updates state and input value
+      // to invalid, generating red border on input field.
     } else if (this.state.alreadySubmitted) {
       this.updateData(name, value, 'invalid', formIsValid);
     } else if (this.state[name].validity) {
@@ -50,6 +69,9 @@ class CalorieCounter extends React.Component {
     }
   }
 
+  // checks if form has all valid entries.
+  // if it does, sets the calories and changes the view to show the model.
+  // otherwise, sets currently null input values as "invalid"
   handleSubmit(event) {
     event.preventDefault();
     const form = event.target;
@@ -63,7 +85,6 @@ class CalorieCounter extends React.Component {
     };
 
     if (formIsValid) {
-      this.props.caloriesFunction(inputs);
       this.setState({
         calories: this.props.calories,
         view: 'result',
@@ -82,15 +103,19 @@ class CalorieCounter extends React.Component {
     }
   }
 
+  // changes view to "calorie", hiding the modal
   returnToCalculator() {
     this.setState({ view: 'calorie' });
   }
 
+  // changes view to "table", returning user to the planner
   returnToPlanner() {
     this.props.setView('table');
   }
 
   render() {
+
+    // if view is "result", renders the modal with the daily recommended calories
     if (this.state.view === 'result') {
       return (
         <>
@@ -107,6 +132,8 @@ class CalorieCounter extends React.Component {
         </>
       );
     }
+
+    // otherwise, renders just the form with the current user input. form is clear on initial render.
     return (
       <CalorieForm
         handleChange={this.handleChange}

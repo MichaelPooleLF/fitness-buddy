@@ -1,5 +1,6 @@
 import React from 'react';
 
+// component for user to pick to add either a default or custom exercise
 function DefaultAndCustomModal(props) {
   return (
     <div className="container stretch">
