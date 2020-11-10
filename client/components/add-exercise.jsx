@@ -43,10 +43,11 @@ function AddExercise(props) {
     return (
       <AddExerciseForm
         header={'Update Exercise'}
+        customExerciseId={props.activeExercise.customExerciseId}
         day={props.activeExercise.day}
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
-        setExercise={props.setExercise}
+        setExercise={props.setExercises}
         back={() => back('table')}
       />
     );
@@ -59,7 +60,8 @@ function AddExercise(props) {
         day={props.activeExercise.day}
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
-        setExercise={props.setExercise}
+        setExercise={props.setExercises}
+        returnToPlanner={() => back('table')}
         back={() => back('add-home')}
       />
     );

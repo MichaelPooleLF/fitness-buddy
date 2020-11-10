@@ -37,7 +37,7 @@ app.get('/api/routine', (req, res, next) => {
 app.get('/api/routine/day/:dayId', (req, res, next) => {
   const dayId = req.params.dayId;
   const sql = `
-  select "d"."name" as "day",
+  select "d"."dayId" as "day",
          "c"."name" as "exercise",
          "c"."description",
          "c"."customExerciseId"

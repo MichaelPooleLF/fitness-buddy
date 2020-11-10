@@ -4,7 +4,46 @@ function AddExerciseForm(props) {
 
   const [name, updateName] = useState(props.exercise);
   const [desc, updateDesc] = useState(props.description);
+  const [dayId] = useState(props.day);
+  const [customExerciseId] = useState(props.customExerciseId);
+
+  function handleAdd(event) {
+    event.preventDefault();
+    if (name && desc) {
+      const init = {
+        method: 'post',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: name, desc: desc, dayId: dayId })
+      };
+      fetch('/api/routine', init)
+        .then(result => result.json())
+        .then(data => props.setExercise(dayId))
+        .catch(err => console.error(err));
+    }
+  }
+
+  function handleUpdate(event) {
+    event.preventDefault();
+    if (name && desc) {
+      const init = {
+        method: 'put',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ name: name, desc: desc })
+      };
+      fetch(`/api/routine/${customExerciseId}`, init)
+        .then(result => result.json())
+        .then(data => props.setExercise(dayId))
+        .catch(err => console.error(err));
+    }
+  }
+
   const backButtonText = props.header === 'Add Exercise' ? 'Back' : 'Return to Planner';
+  const handleSubmit = props.header === 'Add Exercise' ? handleAdd : handleUpdate;
+
   return (
     // start form container
     <div className="container">
@@ -16,7 +55,7 @@ function AddExerciseForm(props) {
       {/* form header end */}
 
       {/* start add exercise form */}
-      <form >
+      <form onSubmit={handleSubmit}>
 
         {/* exercise name input */}
         <div className="form-group">

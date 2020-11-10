@@ -75,7 +75,9 @@ class App extends React.Component {
           day: dayId,
           exercise: '',
           description: ''
-        }
+        },
+        view: 'table',
+        update: false
       }))
       .catch(err => console.error(err));
   }
