@@ -6,6 +6,16 @@ function AddExercise(props) {
 
   const [view, setView] = useState('add-home');
 
+  function addDefault(event) {
+    props.handleAddDefault(event);
+    setView('custom');
+  }
+
+  function back() {
+    props.resetActiveExercise();
+    setView('add-home');
+  }
+
   if (view === 'add-home') {
     return (
       <div className="container stretch">
@@ -33,7 +43,7 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercise}
-        back={() => { setView('add-home'); }}
+        back={back}
       />
     );
   }
@@ -42,7 +52,7 @@ function AddExercise(props) {
     return (
       <DefaultList
         list={props.list}
-        handleAddDefault={props.handleAddDefault}
+        handleAddDefault={addDefault}
       />
     );
   }

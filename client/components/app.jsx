@@ -44,6 +44,7 @@ class App extends React.Component {
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
     this.setView = this.setView.bind(this);
+    this.resetActiveExercise = this.resetActiveExercise.bind(this);
   }
 
   // gets list of exercises for Sunday and stores list of default exercises in state
@@ -162,15 +163,17 @@ class App extends React.Component {
   handleAddDefault(event) {
     if (event.target.tagName === 'BUTTON') {
       const target = event.currentTarget;
+      const day = this.state.day;
       const name = target.firstElementChild.firstElementChild.textContent;
       const desc = target.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.textContent;
       this.setState({
         activeExercise: {
+          day: day,
           exercise: name,
           description: desc
         }
       });
-      this.setView('custom');
+      this.setView('add');
     }
   }
 
@@ -204,6 +207,16 @@ class App extends React.Component {
         exercises: res
       }))
       .catch(err => console.error(err));
+  }
+
+  resetActiveExercise() {
+    this.setState({
+      activeExercise: {
+        day: this.state.day,
+        exercise: '',
+        description: ''
+      }
+    });
   }
 
   render() {
@@ -318,6 +331,7 @@ class App extends React.Component {
             setExercises={this.setExercises}
             updateExercises={this.updateExercises}
             activeExercise={this.state.activeExercise}
+            resetActiveExercise={this.resetActiveExercise}
             day={this.state.day}
           />
           <Footer setView={this.setView} activeIcon={this.state.view} />
