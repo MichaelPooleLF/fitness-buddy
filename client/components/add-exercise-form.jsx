@@ -4,7 +4,7 @@ function AddExerciseForm(props) {
 
   const [name, updateName] = useState(props.exercise);
   const [desc, updateDesc] = useState(props.description);
-
+  const backButtonText = props.header === 'Add Exercise' ? 'Back' : 'Return to Planner';
   return (
     // start form container
     <div className="container">
@@ -22,7 +22,7 @@ function AddExerciseForm(props) {
         <div className="form-group">
           <label htmlFor="name" className="sr-only">Exercise Name</label>
           <input type="text" className="form-control" id="name" name="name"
-            placeholder="Exercise Name" defaultValue={name}
+            placeholder="Exercise Name..." defaultValue={name}
             onChange={event => updateName(event.target.value)} />
         </div>
 
@@ -36,8 +36,12 @@ function AddExerciseForm(props) {
 
         {/* button group - submission and cancel */}
         <div className="row justify-content-center">
-          <button type="submit" className="btn btn-success">Add Exercise</button>
-          <button type="button" className="btn btn-danger ml-3" onClick={props.back}>Back</button>
+          <button type="submit" className="btn btn-success">
+            {props.header}
+          </button>
+          <button type="button" className="btn btn-danger ml-3" onClick={props.back}>
+            {backButtonText}
+          </button>
         </div>
       </form>
       {/* end add exercise form */}
