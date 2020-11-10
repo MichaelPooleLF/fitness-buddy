@@ -1,5 +1,8 @@
 import React from 'react';
 
+// basically the same as custom component, but substitute "Add Exercise" header
+// and button for "Update Exercise"
+// note: this component is a candidate for merging with the custom component
 class UpdateExercise extends React.Component {
   constructor(props) {
     super(props);
