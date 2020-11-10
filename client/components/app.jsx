@@ -11,6 +11,12 @@ import CalorieCounter from './calorie-counter';
 import RecommendedCalories from './recommended-cal';
 import Stopwatch from './stopwatch';
 
+/*
+* This is an app for users to organize their exercises for the week.
+* users can add, update, and delete exercises for each day.
+* users can calculate their daily calorie needs
+* users can use a timer to time their workout and rest periods
+*/
 class App extends React.Component {
   constructor(props) {
     super(props);
