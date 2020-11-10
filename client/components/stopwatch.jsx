@@ -1,17 +1,18 @@
 import React from 'react';
 import TimerModal from './timer-modal';
 
+// component contains workout stopwatch to time workout and rest periods.
 class Stopwatch extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      timer: 'Workout',
-      view: 'stopwatch',
-      workoutMin: '00',
-      workoutSec: '00',
-      restMin: '00',
-      restSec: '00',
-      isClicked: 'Set Time'
+      timer: 'Workout', // valid values: "Workout", "Rest"
+      view: 'stopwatch', // valid values: "stopwatch", "timer-modal"
+      workoutMin: '00', // input type: number. default value is a string.
+      workoutSec: '00', // input type: number. default value is a string.
+      restMin: '00', // input type: number. default value is a string.
+      restSec: '00', // input type: number. default value is a string.
+      isClicked: 'Set Time' // valid values: "Set Time", "Reset"
     };
     this.countdown = this.countdown.bind(this);
     this.handleClick = this.handleClick.bind(this);
@@ -24,12 +25,16 @@ class Stopwatch extends React.Component {
     this.isClicked = this.isClicked.bind(this);
   }
 
+  // handles clicking on "Set Time" button and closing the timer modal
   handleClick() {
     if (this.state.view === 'stopwatch') {
       if (this.state.isClicked === 'Set Time') {
         this.setState({
           view: 'timer-modal'
         });
+
+        // if user is trying to reset the timer, will reset state to default
+        // and clear the timer intervals.
       } else {
         this.setState({
           timer: 'Workout',
@@ -52,12 +57,15 @@ class Stopwatch extends React.Component {
     }
   }
 
+  // sets the time values in state on user input
   onChange(event) {
     const name = event.target.name;
     const value = parseInt(event.target.value);
     this.setState({ [name]: value });
   }
 
+  // if user sets the time, changes set time button to reset. otherwise, changes
+  // reset button to set time.
   isClicked() {
     if (this.state.isClicked === 'Set Time') {
       this.setState({ isClicked: 'Reset' });
@@ -68,23 +76,14 @@ class Stopwatch extends React.Component {
     }
   }
 
+  // sets countdown timers to values in input boxes on submission
   handleSubmit(event) {
     event.preventDefault();
-    if (isNaN(this.state.workoutMin)) {
-      return null;
-    }
-    if (isNaN(this.state.workoutSec)) {
-      return null;
-    }
-    if (isNaN(this.state.restMin)) {
-      return null;
-    }
-    if (isNaN(this.state.restSec)) {
-      return null;
-    }
     this.countdown(this.state.workoutMin, this.state.workoutSec, this.state.restMin, this.state.restSec);
   }
 
+  // sets workout countdown interval, clearing it if the time reaches zero and resetting
+  // state to original workout time, then calls restCountdown
   workoutCountdown(workoutMin, workoutSec, restMin, restSec) {
     let newSec = workoutSec;
     let newMin = workoutMin;
@@ -114,6 +113,8 @@ class Stopwatch extends React.Component {
     }, 1000);
   }
 
+  // sets rest countdown interval, clearing it if the time reaches zero and resetting state
+  // to original rest time, then calls workoutCountdown
   restCountdown(workoutMin, workoutSec, restMin, restSec) {
     let newMin = restMin;
     let newSec = restSec;
@@ -143,14 +144,13 @@ class Stopwatch extends React.Component {
     }, 1000);
   }
 
+  // starts the countdown and sets the view to stopwatch
   countdown(workoutMin, workoutSec, restMin, restSec) {
-    if (!workoutSec) {
-      return null;
-    }
     this.workoutCountdown(workoutMin, workoutSec, restMin, restSec);
     this.handleClick();
   }
 
+  // method to format time in state and return it for use in the render method
   formatTime(timeInput) {
     let formattedTime = '';
     const time = `${timeInput}`;
@@ -169,9 +169,12 @@ class Stopwatch extends React.Component {
   render() {
     if (this.state.view === 'timer-modal') {
       return (
-        <>
-          <TimerModal isClicked={this.isClicked} handleSubmit={this.handleSubmit} countdown={this.countdown} onChange={this.onChange} handleClick={this.handleClick} values={this.state} />
-        </>
+        <TimerModal isClicked={this.isClicked}
+          handleSubmit={this.handleSubmit}
+          countdown={this.countdown}
+          onChange={this.onChange}
+          handleClick={this.handleClick}
+          values={this.state} />
       );
     }
     if (this.state.timer === 'Rest') {

@@ -5,7 +5,7 @@ function TimerModal(props) {
     <div className="fitness-modal-background">
       <div className="fitness-modal-content">
         <form onSubmit={props.handleSubmit}>
-          <i className="fas fa-times close-modal" onClick={props.handleClick}></i>
+          <i className="fas fa-times close-modal cursor-pointer" onClick={props.handleClick}></i>
           <h3 className="text-center">Workout Time</h3>
           <div className="form-row justify-content-center align-items-center">
             <div className="col-5 d-flex justify-content-end">
