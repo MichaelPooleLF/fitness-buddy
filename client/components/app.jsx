@@ -44,7 +44,6 @@ class App extends React.Component {
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
     this.setView = this.setView.bind(this);
-    this.resetCalories = this.resetCalories.bind(this);
   }
 
   // gets list of exercises for Sunday and stores list of default exercises in state
@@ -143,13 +142,6 @@ class App extends React.Component {
     });
   }
 
-  // ssed to set calories in state to null, effectively hiding rec calories from view in app
-  resetCalories() {
-    this.setState({
-      calories: null
-    });
-  }
-
   // method matches exercise clicked with exercise in state and set it to the activeExercise
   // so pass to our update component
   handleUpdateClick(event) {
@@ -222,11 +214,8 @@ class App extends React.Component {
         <>
           <Header />
           <div className="stick-to-top">
-            <RecommendedCalories
-              resetCalories={this.resetCalories}
-              calories={this.state.calories}
-            />
-            <TableDays handleClick={this.handleDayClick} activeDay={this.state.day}/>
+            <RecommendedCalories calories={this.state.calories} />
+            <TableDays handleClick={this.handleDayClick} activeDay={this.state.day} />
           </div>
           <Table
             day={this.state.day}
