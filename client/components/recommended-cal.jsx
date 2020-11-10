@@ -1,5 +1,6 @@
 import React from 'react';
 
+// return a bar showing recommended Calories if present in app state. otherwise, returns nothing
 function RecommendedCalories(props) {
   if (props.calories) {
     return (
