@@ -1,5 +1,6 @@
 import React from 'react';
 
+// component containing header
 function Header() {
   return (
     <div className="container responsive-centering app-header border-bottom py-3">
