@@ -1,5 +1,6 @@
 import React from 'react';
 
+// table data that contains update and delete buttons
 function UpdateAndDelete(props) {
 
   return (
@@ -8,14 +9,17 @@ function UpdateAndDelete(props) {
         type="button"
         id={props.id}
         className="btn btn-outline-primary btn-sm ml-1"
-        onClick={props.handleUpdateClick}
-      >Update</button>
+        onClick={props.handleUpdateClick}>
+          Update
+      </button>
+
       <button
         type="button"
         className="btn btn-outline-danger btn-sm ml-1"
         onClick={props.handleDeleteClick}
-        id={props.id}
-      >Delete</button>
+        id={props.id}>
+          Delete
+      </button>
     </td>
   );
 }
