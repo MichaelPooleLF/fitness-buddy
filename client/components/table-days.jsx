@@ -4,18 +4,51 @@ import React from 'react';
 // exercises
 function TableDays(props) {
 
+  const days = [
+    { name: 'Sun', active: '' },
+    { name: 'Mon', active: '' },
+    { name: 'Tues', active: '' },
+    { name: 'Wed', active: '' },
+    { name: 'Thurs', active: '' },
+    { name: 'Fri', active: '' },
+    { name: 'Sat', active: '' }
+  ];
+
+  // mark active day in days array
+  days.forEach((element, index) => {
+    if (index + 1 === parseInt(props.activeDay)) {
+      element.active = 'active';
+    }
+  });
+
+  // creates an array of React elements, marking the active day in the className
+  const tableDayElements = days.map((day, index) => {
+    // returns element for Sunday
+    if (index === 0) {
+      return (
+        <div className={`day col border-left-0 ${day.active}`} id={index + 1} key={`day ${index + 1}`} onClick={props.handleClick}>{day.name}</div>
+      );
+    }
+
+    // returns element for Saturday
+    if (index === 6) {
+      return (
+        <div className={`day col border-right-0 ${day.active}`} id={index + 1} key={`day ${index + 1}`} onClick={props.handleClick}>{day.name}</div>
+      );
+    }
+
+    // returns elements for weekdays
+    return (
+      <div className={`day col ${day.active}`} id={index + 1} key={`day ${index + 1}`} onClick={props.handleClick}>{day.name}</div>
+    );
+  });
+
   return (
     <>
       <div className="clear"></div>
       <div className="container days-container">
         <div className="row flex-no-wrap">
-          <div className="day col border-left-0" id="1" onClick={props.handleClick}>Sun</div>
-          <div className="day col" id="2" onClick={props.handleClick}>Mon</div>
-          <div className="day col" id="3" onClick={props.handleClick}>Tues</div>
-          <div className="day col" id="4" onClick={props.handleClick}>Wed</div>
-          <div className="day col" id="5" onClick={props.handleClick}>Thurs</div>
-          <div className="day col" id="6" onClick={props.handleClick}>Fri</div>
-          <div className="day col border-right-0" id="7" onClick={props.handleClick}>Sat</div>
+          {tableDayElements}
         </div>
       </div>
       <div className="clear"></div>
