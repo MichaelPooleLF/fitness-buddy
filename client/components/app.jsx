@@ -2,7 +2,7 @@ import React from 'react';
 import Header from './header';
 import Table from './table';
 import TableDays from './table-days';
-import DefaultAndCustomModal from './add-exercise';
+import AddExercise from './add-exercise';
 import Footer from './footer';
 import CalorieCounter from './calorie-counter';
 import RecommendedCalories from './recommended-cal';
@@ -256,7 +256,7 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <DefaultAndCustomModal
+          <AddExercise
             update={this.state.update}
             setView={this.changeAppView}
             componentView={this.state.componentView }
