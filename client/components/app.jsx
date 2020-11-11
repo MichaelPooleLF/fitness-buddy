@@ -27,10 +27,7 @@ class App extends React.Component {
         exercise: '',
         description: ''
       },
-      message: null,
-      isLoading: true,
       calories: 1935, // user daily recommended calories
-      update: false,
       componentView: ''
     };
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
@@ -61,7 +58,6 @@ class App extends React.Component {
       view: newView,
       day: this.state.day,
       activeExercise: updatedActiveExercise,
-      update: false,
       componentView: updateComponentView
     });
   }
@@ -98,7 +94,6 @@ class App extends React.Component {
           description: ''
         },
         view: 'table',
-        update: false,
         componentView: 'table'
       }))
       .catch(err => console.error(err));
@@ -153,7 +148,6 @@ class App extends React.Component {
       if (element.customExerciseId === currentExerciseId) {
         this.setState({
           activeExercise: element,
-          update: true,
           view: 'add-home',
           componentView: 'update'
         });
@@ -256,10 +250,8 @@ class App extends React.Component {
         <>
           <Header />
           <AddExercise
-            update={this.state.update}
             changeAppView={this.changeAppView}
             componentView={this.state.componentView }
-            backToPlanner={() => this.changeAppView('table', '')}
             list={this.state.defaultExercises}
             handleAddDefault={this.handleAddDefault}
             setExercises={this.setExercises}
