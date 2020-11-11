@@ -30,32 +30,12 @@ class App extends React.Component {
       calories: 1935, // user daily recommended calories
       componentView: ''
     };
-    this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.setExercises = this.setExercises.bind(this);
-    this.handleDeleteClick = this.handleDeleteClick.bind(this);
-    this.updateCalories = this.updateCalories.bind(this);
-    this.handleAddDefault = this.handleAddDefault.bind(this);
     this.changeAppView = this.changeAppView.bind(this);
-  }
-
-  changeAppView(newView, componentView) {
-    let updateComponentView = componentView;
-    const activeExercise = {
-      day: this.state.day,
-      exercise: '',
-      description: ''
-    };
-
-    if (!componentView) {
-      updateComponentView = newView;
-    }
-
-    this.setState({
-      view: newView,
-      day: this.state.day,
-      activeExercise: activeExercise,
-      componentView: updateComponentView
-    });
+    this.updateCalories = this.updateCalories.bind(this);
+    this.handleUpdateClick = this.handleUpdateClick.bind(this);
+    this.handleDeleteClick = this.handleDeleteClick.bind(this);
+    this.handleAddDefault = this.handleAddDefault.bind(this);
   }
 
   // gets list of exercises for Sunday and stores list of default exercises in state
@@ -93,6 +73,26 @@ class App extends React.Component {
         componentView: 'table'
       }))
       .catch(err => console.error(err));
+  }
+
+  changeAppView(newView, componentView) {
+    let updateComponentView = componentView;
+    const activeExercise = {
+      day: this.state.day,
+      exercise: '',
+      description: ''
+    };
+
+    if (!componentView) {
+      updateComponentView = newView;
+    }
+
+    this.setState({
+      view: newView,
+      day: this.state.day,
+      activeExercise: activeExercise,
+      componentView: updateComponentView
+    });
   }
 
   // calculates recommended daily calories based on calorie-counter user input
@@ -151,26 +151,6 @@ class App extends React.Component {
     });
   }
 
-  // finds default exercise information based on exercise clicked in default list
-  // and sets it to activeExercise to be passed to our custom component
-  handleAddDefault(event) {
-    if (event.target.tagName === 'BUTTON') {
-      const target = event.currentTarget;
-      const day = this.state.day;
-      const name = target.firstElementChild.firstElementChild.textContent;
-      const desc = target.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.textContent;
-      this.setState({
-        activeExercise: {
-          day: day,
-          exercise: name,
-          description: desc
-        },
-        view: 'add-home',
-        componentView: 'custom'
-      });
-    }
-  }
-
   // deletes exercise from current exercise list in state upon successful deletion
   handleDeleteClick(event) {
     const exercises = this.state.exercises.map(item => ({ ...item }));
@@ -194,6 +174,26 @@ class App extends React.Component {
         exercises: res
       }))
       .catch(err => console.error(err));
+  }
+
+  // finds default exercise information based on exercise clicked in default list
+  // and sets it to activeExercise to be passed to our custom component
+  handleAddDefault(event) {
+    if (event.target.tagName === 'BUTTON') {
+      const target = event.currentTarget;
+      const day = this.state.day;
+      const name = target.firstElementChild.firstElementChild.textContent;
+      const desc = target.nextElementSibling.firstElementChild.firstElementChild.firstElementChild.textContent;
+      this.setState({
+        activeExercise: {
+          day: day,
+          exercise: name,
+          description: desc
+        },
+        view: 'add-home',
+        componentView: 'custom'
+      });
+    }
   }
 
   render() {
