@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 
 function AddExerciseForm(props) {
 
-  const [name, updateName] = useState(props.exercise);
-  const [desc, updateDesc] = useState(props.description);
-  const [dayId] = useState(props.day);
-  const [customExerciseId] = useState(props.customExerciseId);
+  const [name, updateName] = useState(props.activeExercise.exercise);
+  const [desc, updateDesc] = useState(props.activeExercise.description);
+  const [dayId] = useState(props.activeExercise.day);
+  const [customExerciseId] = useState(props.activeExercise.customExerciseId);
 
   function handleAdd(event) {
     event.preventDefault();

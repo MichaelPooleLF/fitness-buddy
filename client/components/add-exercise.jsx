@@ -27,10 +27,7 @@ function AddExercise(props) {
     return (
       <AddExerciseForm
         header={'Update Exercise'}
-        customExerciseId={props.activeExercise.customExerciseId}
-        day={props.activeExercise.day}
-        exercise={props.activeExercise.exercise}
-        description={props.activeExercise.description}
+        activeExercise={props.activeExercise}
         setExercise={props.setExercises}
         back={() => props.changeAppView('table')}
       />
@@ -41,9 +38,7 @@ function AddExercise(props) {
     return (
       <AddExerciseForm
         header={'Add Exercise'}
-        day={props.activeExercise.day}
-        exercise={props.activeExercise.exercise}
-        description={props.activeExercise.description}
+        activeExercise={props.activeExercise}
         setExercise={props.setExercises}
         back={() => props.changeAppView('add-home')}
       />
