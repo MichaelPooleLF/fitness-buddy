@@ -109,8 +109,8 @@ class CalorieCounter extends React.Component {
           <CalorieCounterResult
             values={this.state}
             calories={this.state.calories}
-            returnToCalculator={() => this.props.changeAppView('calorie', 'calorie')}
-            returnToPlanner={() => this.props.changeAppView('table', 'table')}
+            returnToCalculator={() => this.props.changeAppView('calorie')}
+            returnToPlanner={() => this.props.changeAppView('table')}
           />
           <CalorieForm
             handleChange={this.handleChange}
