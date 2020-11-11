@@ -254,7 +254,6 @@ class App extends React.Component {
             handleAddDefault={this.handleAddDefault}
             setExercises={this.setExercises}
             activeExercise={this.state.activeExercise}
-            day={this.state.day}
           />
           <Footer changeAppView={this.changeAppView} activeIcon={this.state.view} />
         </>
