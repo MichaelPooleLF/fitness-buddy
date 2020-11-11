@@ -38,17 +38,13 @@ class App extends React.Component {
     this.changeAppView = this.changeAppView.bind(this);
   }
 
-  changeAppView(newView, componentView, activeExercise) {
+  changeAppView(newView, componentView) {
     let updateComponentView = componentView;
-    const updatedActiveExercise = {
+    const activeExercise = {
       day: this.state.day,
       exercise: '',
       description: ''
     };
-
-    if (activeExercise) {
-      updateComponentView = this.state.activeExercise;
-    }
 
     if (!componentView) {
       updateComponentView = newView;
@@ -57,7 +53,7 @@ class App extends React.Component {
     this.setState({
       view: newView,
       day: this.state.day,
-      activeExercise: updatedActiveExercise,
+      activeExercise: activeExercise,
       componentView: updateComponentView
     });
   }

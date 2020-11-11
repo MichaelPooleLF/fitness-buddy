@@ -32,7 +32,7 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercises}
-        back={() => props.changeAppView('table', 'table')}
+        back={() => props.changeAppView('table')}
       />
     );
   }
@@ -45,7 +45,7 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercises}
-        back={() => props.changeAppView('add-home', 'add-home')}
+        back={() => props.changeAppView('add-home')}
       />
     );
   }
