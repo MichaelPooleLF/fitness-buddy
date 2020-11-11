@@ -245,6 +245,8 @@ class App extends React.Component {
           <Footer changeAppView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
+
+      // sets view to a page where users can begin to add exercises to the planner
     } else if (this.state.view === 'add-home') {
       return (
         <>
