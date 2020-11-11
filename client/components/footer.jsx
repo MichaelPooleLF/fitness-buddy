@@ -22,7 +22,7 @@ function Footer(props) {
   const iconElementArray = icons.map(icon => {
     return (
       <i className={`${icon.image} size-icon cursor-pointer icon-hover ${icon.color} ${icon.active}`}
-        onClick={() => { props.setView(icon.path); }}
+        onClick={() => { props.changeAppView(icon.path); }}
         key={`${icon.path}`}>
       </i>
     );

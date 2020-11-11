@@ -22,8 +22,6 @@ class CalorieCounter extends React.Component {
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.returnToCalculator = this.returnToCalculator.bind(this);
-    this.returnToPlanner = this.returnToPlanner.bind(this);
     this.updateData = this.updateData.bind(this);
   }
 
@@ -88,7 +86,7 @@ class CalorieCounter extends React.Component {
       this.setState({
         calories: this.props.calories,
         alreadySubmitted: true
-      }, () => { this.props.setView('calorie', 'result'); });
+      }, () => { this.props.changeAppView('calorie', 'result'); });
     } else {
       for (const property in inputs) {
         if (!inputs[property].validity) {
@@ -102,16 +100,6 @@ class CalorieCounter extends React.Component {
     }
   }
 
-  // changes view to "calorie", hiding the modal
-  returnToCalculator() {
-    this.props.setView('calorie', 'calorie');
-  }
-
-  // changes view in app to "table", returning user to the planner
-  returnToPlanner() {
-    this.props.setView('table', '');
-  }
-
   render() {
 
     // if view is "result", renders the modal with the daily recommended calories
@@ -121,8 +109,8 @@ class CalorieCounter extends React.Component {
           <CalorieCounterResult
             values={this.state}
             calories={this.state.calories}
-            returnToCalculator={this.returnToCalculator}
-            returnToPlanner={this.returnToPlanner}
+            returnToCalculator={() => this.props.changeAppView('calorie')}
+            returnToPlanner={() => this.props.changeAppView('table')}
           />
           <CalorieForm
             handleChange={this.handleChange}
