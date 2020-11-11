@@ -208,7 +208,6 @@ class App extends React.Component {
             <TableDays handleClick={this.setExercises} activeDay={this.state.day} />
           </div>
           <Table
-            day={this.state.day}
             exercises={this.state.exercises}
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
