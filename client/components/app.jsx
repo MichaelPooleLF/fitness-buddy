@@ -153,9 +153,9 @@ class App extends React.Component {
   // so pass to our update component
   handleUpdateClick(event) {
     const exercises = this.state.exercises.map(element => ({ ...element }));
-    const currentExerciseId = parseInt(event.currentTarget.getAttribute('id'), 10);
+    const itemId = parseInt(event.currentTarget.getAttribute('exerciseid'), 10);
     exercises.forEach(element => {
-      if (element.customExerciseId === currentExerciseId) {
+      if (element.customExerciseId === itemId) {
         this.setState({
           activeExercise: element,
           view: 'add-home',
@@ -168,7 +168,7 @@ class App extends React.Component {
   // deletes exercise from current exercise list in state upon successful deletion
   handleDeleteClick(event) {
     const exercises = this.state.exercises.map(item => ({ ...item }));
-    const itemId = event.currentTarget.getAttribute('id');
+    const itemId = event.currentTarget.getAttribute('exerciseid');
     const data = { customExerciseId: itemId, dayId: this.state.day };
     fetch('/api/routine', {
       method: 'DELETE',

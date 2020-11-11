@@ -7,7 +7,7 @@ function UpdateAndDelete(props) {
     <td className="update-and-delete cursor-pointer" onClick={props.showDescription}>
       <button
         type="button"
-        id={props.id}
+        exerciseid={props.id} // attribute is lowercase because it is a custom attribute
         className="btn btn-outline-primary btn-sm ml-1"
         onClick={props.handleUpdateClick}>
           Update
@@ -15,9 +15,9 @@ function UpdateAndDelete(props) {
 
       <button
         type="button"
+        exerciseid={props.id} // attribute is lowercase because it is a custom attribute
         className="btn btn-outline-danger btn-sm ml-1"
-        onClick={props.handleDeleteClick}
-        id={props.id}>
+        onClick={props.handleDeleteClick}>
           Delete
       </button>
     </td>
