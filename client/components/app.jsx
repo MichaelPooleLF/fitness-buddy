@@ -28,7 +28,7 @@ class App extends React.Component {
         description: ''
       },
       calories: 1935, // user daily recommended calories
-      componentView: ''
+      componentView: 'table'
     };
     this.setExercises = this.setExercises.bind(this);
     this.changeAppView = this.changeAppView.bind(this);
@@ -40,25 +40,38 @@ class App extends React.Component {
 
   // gets list of exercises for Sunday and stores list of default exercises in state
   componentDidMount() {
-    this.setExercises(null, this.state.day);
-    this.getDefaultExercises();
+    this.initializeState();
   }
 
-  // fetches list of default exercises from database, returning an array of objects
-  getDefaultExercises() {
+  // fetches list of default exercises and exercises for day in state, storing the
+  // results in variables, then storing the data in state
+  initializeState() {
+    let defaultExercises = [];
     fetch('/api/routine')
       .then(result => result.json())
       .then(data => {
-        this.setState({ defaultExercises: data });
-      });
+        defaultExercises = data;
+        return fetch(`/api/routine/day/${this.state.day}`)
+          .then(result => result.json())
+          .then(data => {
+            this.setState({
+              exercises: data,
+              defaultExercises: defaultExercises
+            });
+          });
+      })
+      .catch(err => console.error(err));
   }
 
   // fetches list of exercises for a specific day, returning an array of objects
   // dayId is a string representing a number between 1 & 7
+  // if method not called by event handler, first parameter is null
   setExercises(event, dayId) {
+    // if method called by clicking on day in table, sets day id to day clicked
     if (event) {
       dayId = event.currentTarget.getAttribute('id');
     }
+
     fetch(`/api/routine/day/${dayId}`)
       .then(result => result.json())
       .then(data => this.setState({
@@ -75,6 +88,7 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
+  // sets view and componentView in state, and resets activeExercise
   changeAppView(newView, componentView) {
     let updateComponentView = componentView;
     const activeExercise = {
@@ -197,7 +211,6 @@ class App extends React.Component {
   }
 
   render() {
-
     // sets view to table of user-added exercises
     if (this.state.view === 'table') {
       return (
