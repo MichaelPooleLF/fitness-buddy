@@ -18,7 +18,6 @@ class CalorieCounter extends React.Component {
       weight: { value: '', validity: null },
       height: { value: '', validity: null },
       calories: this.props.calories,
-      view: 'calorie', // valid view values are "calorie" and "result"
       alreadySubmitted: false // changes to true when user first tries to submit the form
     };
     this.handleChange = this.handleChange.bind(this);
@@ -88,9 +87,8 @@ class CalorieCounter extends React.Component {
     if (formIsValid) {
       this.setState({
         calories: this.props.calories,
-        view: 'result',
         alreadySubmitted: true
-      });
+      }, () => { this.props.setView('calorie', 'result'); });
     } else {
       for (const property in inputs) {
         if (!inputs[property].validity) {
@@ -106,18 +104,18 @@ class CalorieCounter extends React.Component {
 
   // changes view to "calorie", hiding the modal
   returnToCalculator() {
-    this.setState({ view: 'calorie' });
+    this.props.setView('calorie', 'calorie');
   }
 
-  // changes view to "table", returning user to the planner
+  // changes view in app to "table", returning user to the planner
   returnToPlanner() {
-    this.props.setView('table');
+    this.props.setView('table', '');
   }
 
   render() {
 
     // if view is "result", renders the modal with the daily recommended calories
-    if (this.state.view === 'result') {
+    if (this.props.componentView === 'result') {
       return (
         <>
           <CalorieCounterResult

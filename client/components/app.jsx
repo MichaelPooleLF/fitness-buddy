@@ -3,10 +3,7 @@ import Header from './header';
 import Table from './table';
 import TableDays from './table-days';
 import DefaultAndCustomModal from './add-exercise';
-// import Custom from './custom';
-// import DefaultList from './default-list-item';
 import Footer from './footer';
-// import UpdateExercise from './update-exercise';
 import CalorieCounter from './calorie-counter';
 import RecommendedCalories from './recommended-cal';
 import Stopwatch from './stopwatch';
@@ -33,24 +30,46 @@ class App extends React.Component {
       message: null,
       isLoading: true,
       calories: 1935, // user daily recommended calories
-      update: false
+      update: false,
+      componentView: ''
     };
-    this.handleDayClick = this.handleDayClick.bind(this);
-    this.handleCancelClick = this.handleCancelClick.bind(this);
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
-    this.updateExercises = this.updateExercises.bind(this);
     this.setExercises = this.setExercises.bind(this);
     this.getDefaultExercises = this.getDefaultExercises.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
-    this.setView = this.setView.bind(this);
-    this.resetActiveExercise = this.resetActiveExercise.bind(this);
+    this.changeAppView = this.changeAppView.bind(this);
+  }
+
+  changeAppView(newView, componentView, activeExercise) {
+    let updateComponentView = componentView;
+    const updatedActiveExercise = {
+      day: this.state.day,
+      exercise: '',
+      description: ''
+    };
+
+    if (activeExercise) {
+      updateComponentView = this.state.activeExercise;
+    }
+
+    if (!componentView) {
+      updateComponentView = newView;
+    }
+
+    this.setState({
+      view: newView,
+      day: this.state.day,
+      activeExercise: updatedActiveExercise,
+      update: false,
+      componentView: updateComponentView
+    });
   }
 
   // gets list of exercises for Sunday and stores list of default exercises in state
   componentDidMount() {
-    this.setExercises(this.state.day);
+    this.setExercises(null, this.state.day);
     this.getDefaultExercises();
   }
 
@@ -65,7 +84,10 @@ class App extends React.Component {
 
   // fetches list of exercises for a specific day, returning an array of objects
   // dayId is a string representing a number between 1 & 7
-  setExercises(dayId) {
+  setExercises(event, dayId) {
+    if (event) {
+      dayId = event.currentTarget.getAttribute('id');
+    }
     fetch(`/api/routine/day/${dayId}`)
       .then(result => result.json())
       .then(data => this.setState({
@@ -77,22 +99,10 @@ class App extends React.Component {
           description: ''
         },
         view: 'table',
-        update: false
+        update: false,
+        componentView: 'table'
       }))
       .catch(err => console.error(err));
-  }
-
-  // changes view in state, representing user navigating to different pages in the app
-  setView(newView) {
-    this.setState({
-      view: newView
-    });
-  }
-
-  // method to switch between different day's list of exercises on click
-  handleDayClick(event) {
-    const dayId = event.currentTarget.getAttribute('id');
-    this.setExercises(dayId);
   }
 
   // calculates recommended daily calories based on calorie-counter user input
@@ -135,18 +145,6 @@ class App extends React.Component {
       .then(data => this.setState({ calories: data.recommendedCalories }));
   }
 
-  // used to set view back to table. Candidate for merging with previous view method
-  handleCancelClick() {
-    this.setState({
-      view: 'table',
-      activeExercise: {
-        day: this.state.day,
-        exercise: '',
-        description: ''
-      }
-    });
-  }
-
   // method matches exercise clicked with exercise in state and set it to the activeExercise
   // so pass to our update component
   handleUpdateClick(event) {
@@ -157,7 +155,8 @@ class App extends React.Component {
         this.setState({
           activeExercise: element,
           update: true,
-          view: 'add-home'
+          view: 'add-home',
+          componentView: 'update'
         });
       }
     });
@@ -177,16 +176,10 @@ class App extends React.Component {
           exercise: name,
           description: desc
         },
-        view: 'add-home'
+        view: 'add-home',
+        componentView: 'custom'
       });
     }
-  }
-
-  // method used to add exercises to each day, updating state and table with
-  // new exercise
-  updateExercises(exercise) {
-    const exercises = this.state.exercises.map(element => ({ ...element }));
-    exercises.push(exercise);
   }
 
   // deletes exercise from current exercise list in state upon successful deletion
@@ -214,17 +207,6 @@ class App extends React.Component {
       .catch(err => console.error(err));
   }
 
-  resetActiveExercise() {
-    this.setState({
-      activeExercise: {
-        day: this.state.day,
-        exercise: '',
-        description: ''
-      },
-      update: false
-    });
-  }
-
   render() {
 
     // sets view to table of user-added exercises
@@ -234,75 +216,17 @@ class App extends React.Component {
           <Header />
           <div className="stick-to-top">
             <RecommendedCalories calories={this.state.calories} />
-            <TableDays handleClick={this.handleDayClick} activeDay={this.state.day} />
+            <TableDays handleClick={this.setExercises} activeDay={this.state.day} />
           </div>
           <Table
             day={this.state.day}
             exercises={this.state.exercises}
-            setView={this.setView}
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
-          <Footer setView={this.setView} activeIcon={this.state.view}/>
+          <Footer setView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
-
-      // sets view to page where user can choose to add a default exercise or one of their own
-      // } else if (this.state.view === 'choose') {
-      //   return (
-      //     <>
-      //       <Header />
-      //       <DefaultAndCustomModal
-      //         setView={this.setView}
-      //         handleCancelClick={this.handleCancelClick}
-      //       />
-      //       <Footer setView={this.setView} activeIcon={this.state.view}/>
-      //     </>
-      //   );
-
-      // sets view to page showing a list of default exercises to pick from
-      // } else if (this.state.view === 'default') {
-      //   return (
-      //     <>
-      //       <Header />
-      //       <DefaultList
-      //         list={this.state.defaultExercises}
-      //         handleCancelClick={this.handleCancelClick}
-      //         handleAddDefault={this.handleAddDefault}
-      //       />
-      //       <Footer setView={this.setView} activeIcon={this.state.view}/>
-      //     </>
-      //   );
-
-      // sets view to page where user can add their own exercises
-      // } else if (this.state.view === 'custom') {
-      //   return (
-      //     <>
-      //       <Header />
-      //       <Custom setExercises={this.setExercises}
-      //         updateExercises={this.updateExercises}
-      //         activeExercise={this.state.activeExercise}
-      //         handleCancelClick={this.handleCancelClick}
-      //         day={this.state.day}
-      //       />
-      //       <Footer setView={this.setView} activeIcon={this.state.view}/>
-      //     </>
-      //   );
-
-      // sets view to page where user can update an exercise on their list
-      // } else if (this.state.view === 'update') {
-      //   return (
-      //     <>
-      //       <Header />
-      //       <UpdateExercise
-      //         setExercises={this.setExercises}
-      //         handleCancelClick={this.handleCancelClick}
-      //         exercise={this.state.activeExercise}
-      //         day={this.state.day}
-      //       />
-      //       <Footer setView={this.setView} activeIcon={this.state.view}/>
-      //     </>
-      //   );
 
       // sets view to our calorie calculator form
     } else if (this.state.view === 'calorie') {
@@ -312,9 +236,10 @@ class App extends React.Component {
           <CalorieCounter
             caloriesFunction={this.updateCalories}
             calories={this.state.calories}
-            setView={this.setView}
+            componentView={this.state.componentView}
+            setView={this.changeAppView}
           />
-          <Footer setView={this.setView} activeIcon={this.state.view}/>
+          <Footer setView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -323,8 +248,8 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <Stopwatch setView={this.setView}/>
-          <Footer setView={this.setView} activeIcon={this.state.view}/>
+          <Stopwatch/>
+          <Footer setView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
     } else if (this.state.view === 'add-home') {
@@ -333,16 +258,16 @@ class App extends React.Component {
           <Header />
           <DefaultAndCustomModal
             update={this.state.update}
-            backToPlanner={() => this.setView('table')}
+            setView={this.changeAppView}
+            componentView={this.state.componentView }
+            backToPlanner={() => this.changeAppView('table', '')}
             list={this.state.defaultExercises}
             handleAddDefault={this.handleAddDefault}
             setExercises={this.setExercises}
-            updateExercises={this.updateExercises}
             activeExercise={this.state.activeExercise}
-            resetActiveExercise={this.resetActiveExercise}
             day={this.state.day}
           />
-          <Footer setView={this.setView} activeIcon={this.state.view} />
+          <Footer setView={this.changeAppView} activeIcon={this.state.view} />
         </>
       );
     }

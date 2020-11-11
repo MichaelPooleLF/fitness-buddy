@@ -10,7 +10,6 @@ function Table(props) {
         key={item.customExerciseId}
         name={item.exercise}
         description={item.description}
-        setView={props.setView}
         handleDeleteClick={props.handleDeleteClick}
         handleUpdateClick={props.handleUpdateClick}
         id={item.customExerciseId}

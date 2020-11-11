@@ -19,7 +19,7 @@ function AddExerciseForm(props) {
       };
       fetch('/api/routine', init)
         .then(result => result.json())
-        .then(data => props.setExercise(dayId))
+        .then(data => props.setExercise(null, dayId))
         .catch(err => console.error(err));
     }
   }
@@ -36,7 +36,7 @@ function AddExerciseForm(props) {
       };
       fetch(`/api/routine/${customExerciseId}`, init)
         .then(result => result.json())
-        .then(data => props.setExercise(dayId))
+        .then(data => props.setExercise(null, dayId))
         .catch(err => console.error(err));
     }
   }

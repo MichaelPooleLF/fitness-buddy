@@ -1,37 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
 import AddExerciseForm from './add-exercise-form';
 import DefaultList from './default-list-item';
 
 function AddExercise(props) {
 
-  const [view, setView] = useState('add-home');
-
   function addDefault(event) {
     props.handleAddDefault(event);
-    setView('custom');
   }
 
-  function back(newView) {
-    props.resetActiveExercise();
-    if (newView === 'add-home') {
-      setView(newView);
-    } else {
-      props.backToPlanner();
-    }
-  }
-
-  if (view === 'add-home' && !props.update) {
+  if (props.componentView === 'add-home') {
     return (
       <div className="container stretch">
         <div className="row">
           <button className="btn btn-outline-primary choose-screen-button"
-            onClick={() => setView('default')}>
+            onClick={() => props.setView('add-home', 'default')}>
             Add a Pre-Made Exercise
           </button>
         </div>
         <div className="row mt-5">
           <button className="btn btn-outline-primary choose-screen-button"
-            onClick={() => setView('custom')}>
+            onClick={() => props.setView('add-home', 'custom')}>
             Create and Add an Exercise
           </button>
         </div>
@@ -39,7 +27,7 @@ function AddExercise(props) {
     );
   }
 
-  if (props.update) {
+  if (props.componentView === 'update') {
     return (
       <AddExerciseForm
         header={'Update Exercise'}
@@ -48,12 +36,12 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercises}
-        back={() => back('table')}
+        back={() => props.setView('table', 'table')}
       />
     );
   }
 
-  if (view === 'custom') {
+  if (props.componentView === 'custom') {
     return (
       <AddExerciseForm
         header={'Add Exercise'}
@@ -61,13 +49,12 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercises}
-        returnToPlanner={() => back('table')}
-        back={() => back('add-home')}
+        back={() => props.setView('add-home', 'add-home')}
       />
     );
   }
 
-  if (view === 'default') {
+  if (props.componentView === 'default') {
     return (
       <DefaultList
         list={props.list}
