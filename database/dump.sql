@@ -347,22 +347,24 @@ COPY public."bodyPart" ("bodyPartId", name) FROM stdin;
 --
 
 COPY public."customExercise" ("customExerciseId", name, description) FROM stdin;
-2	newest mon exercise	newest mon description
-3	sunday exercise	sunday description
-5	Push Ups: Wide	Start in a plank position with hands wider than shoulders. Face fingers forward. Slowly bend elbows out to the side as you lower your body to the floor. Stop when your chest is near the floor. Extend your elbows to go back to plank position.
-6	Superman	Lie face down on a mat, with your legs straight and your arms outstretched in front of you. Raise both your arms and legs at the same time, forming a bowl shape with your body.  Hold this position for a few seconds.
-18	Side-Tri Rises	Lie on your side with your legs straight or angled slightly at the hips. Place the hand of your lower arm on its opposite shoulder, and place your other hand firmly on the floor. With your elbow pointed towards your feet, press into the floor and extend your arm, lifting your upper body off the floor.
-19	Air Squats	Keep your feet at shoulder width apart and pointed straight ahead. When squatting, your hips will move down and back. Your lumbar curve should be maintained, and your heels should stay flat on the floor the entire time. In air squats, your hips will descend lower than your knees.
-20	Bicep Curls Forward	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
-21	In & Outs	 Sit on the floor with your palms down at your sides. Utilizing your core muscles, bring both knees into your chest.
-22	In & Outs	 Sit on the floor with your palms down at your sides. Utilizing your core muscles, bring both knees into your chest.
-1	New Mon Exercise	mon description
-26	Bicep Curls Forward	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
+59	Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Press the weights directly upwards until your arms are straight and the weights touch above your head.
 27	Alternating Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Alternate pressing one weight directly upwards until your arm is straight.
-28	Superman	Lie face down on a mat, with your legs straight and your arms outstretched in front of you. Raise both your arms and legs at the same time, forming a bowl shape with your body.  Hold this position for a few seconds.
-8	Bicep Curls Forward	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
-29	Bicep Curls Forward	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
-30	Lunges	Stand tall with feet hip-width apart. Engage your core. Take a big step forward with your right leg. Start to shift your weight forward so your heel hits the floor first. Lower your body until your right thigh is parallel to the floor and your right shin is vertical. It’s OK if your knee shifts forward a little as long as it doesn’t go past your right toe. If mobility allows, lightly tap your left knee to the floor while keeping your weight on your right heel. Press into your right heel to drive back up to starting position. Repeat on the other side.
+3	Updated Sunday Exercise	New Sunday Description
+33	Bicep Curls Forward	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
+38	Bicep Curls Forward	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
+60	Alternating Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Alternate pressing one weight directly upwards until your arm is straight.
+70	Air Squats and Leaps and Jumps	Keep your feet at shoulder width apart and pointed straight ahead. When squatting, your hips will move down and back. Your lumbar curve should be maintained, and your heels should stay flat on the floor the entire time. In air squats, your hips will descend lower than your knees.
+43	Dips & Dives	Grab the bars and jump up to straighten your arms. Lower body by bending your arms while leaning forward. Dip down until shoulders are below your elbows. Lift your body up by straightening your arms. Lock your elbows at the top.
+2	newest mon exercise updated	newest mon description
+21	In & Outs & Ins	 Sit on the floor with your palms down at your sides. Utilizing your core muscles, bring both knees into your chest.
+6	Superman and Batman	Lie face down on a mat, with your legs straight and your arms outstretched in front of you. Raise both your arms and legs at the same time, forming a bowl shape with your body.  Hold this position for a few seconds.
+67	Bicep Curls Forward & Backwards	Stand holding a dumbbell in each hand with your arms hanging by your sides. Ensure your elbows are close to your torso and your palms facing forward. Keeping your upper arms stationary, exhale as you curl the weights up to shoulder level while contracting your biceps.
+40	Superman dah-da-daaaaah!	Lie face down on a mat, with your legs straight and your arms outstretched in front of you. Raise both your arms and legs at the same time, forming a bowl shape with your body.  Hold this position for a few seconds.
+1	New Mon Exercise Updated!	mon description updated!
+72	Close Grip Push Ups	Lay on the floor with your face, palms and toes facing down. Keep your legs and back straight. Place your palms on the floor with your elbows touching your sides. Extend your arms straight to push your body up and back down again, keeping your arms close to your sides and your elbows pointing towards your feet.
+73	Superman	Lie face down on a mat, with your legs straight and your arms outstretched in front of you. Raise both your arms and legs at the same time, forming a bowl shape with your body.  Hold this position for a few seconds.
+74	Shoulder Press	Sitting or standing, hold a dumbbell in each hand at shoulder height with your palms facing inwards or away from you. Keep your chest up and your core braced, and look straight forward throughout the move. Press the weights directly upwards until your arms are straight and the weights touch above your head.
+75	Bicep Curls Forward and Backwards and Forwards and Backwards	get confused, roll, collapse, eat bread.
 \.
 
 
@@ -389,19 +391,21 @@ COPY public."dayExercise" ("dayId", "customExerciseId") FROM stdin;
 2	1
 2	2
 1	3
-1	5
 1	6
-1	8
-1	18
-1	19
-1	20
 1	21
-1	22
-1	26
 1	27
-1	28
-1	29
-1	30
+5	33
+1	38
+1	40
+1	43
+1	59
+1	60
+1	67
+1	70
+1	72
+1	73
+1	74
+1	75
 \.
 
 
@@ -584,7 +588,7 @@ SELECT pg_catalog.setval('public."bodyPart_bodyPartId_seq"', 7, true);
 -- Name: customExercise_customExerciseId_seq; Type: SEQUENCE SET; Schema: public; Owner: -
 --
 
-SELECT pg_catalog.setval('public."customExercise_customExerciseId_seq"', 30, true);
+SELECT pg_catalog.setval('public."customExercise_customExerciseId_seq"', 75, true);
 
 
 --

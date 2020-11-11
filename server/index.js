@@ -45,6 +45,7 @@ app.get('/api/routine/day/:dayId', (req, res, next) => {
   join "dayExercise" using ("dayId")
   join "customExercise" as "c" using ("customExerciseId")
   where "dayId" = $1
+  order by "customExerciseId"
   `;
   const params = [dayId];
   db.query(sql, params)
