@@ -1,5 +1,5 @@
 import React from 'react';
-import Exercises from './default-list-item-exercise';
+import Exercises from './default-exercises';
 
 // represents accordion of body parts, each with an accordion of exercise
 function DefaultListItem(props) {

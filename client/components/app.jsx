@@ -35,7 +35,6 @@ class App extends React.Component {
     };
     this.handleUpdateClick = this.handleUpdateClick.bind(this);
     this.setExercises = this.setExercises.bind(this);
-    this.getDefaultExercises = this.getDefaultExercises.bind(this);
     this.handleDeleteClick = this.handleDeleteClick.bind(this);
     this.updateCalories = this.updateCalories.bind(this);
     this.handleAddDefault = this.handleAddDefault.bind(this);
@@ -224,7 +223,7 @@ class App extends React.Component {
             handleDeleteClick={this.handleDeleteClick}
             handleUpdateClick={this.handleUpdateClick}
           />
-          <Footer setView={this.changeAppView} activeIcon={this.state.view}/>
+          <Footer changeAppView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -237,9 +236,9 @@ class App extends React.Component {
             caloriesFunction={this.updateCalories}
             calories={this.state.calories}
             componentView={this.state.componentView}
-            setView={this.changeAppView}
+            changeAppView={this.changeAppView}
           />
-          <Footer setView={this.changeAppView} activeIcon={this.state.view}/>
+          <Footer changeAppView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
 
@@ -249,7 +248,7 @@ class App extends React.Component {
         <>
           <Header />
           <Stopwatch/>
-          <Footer setView={this.changeAppView} activeIcon={this.state.view}/>
+          <Footer changeAppView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
     } else if (this.state.view === 'add-home') {
@@ -258,7 +257,7 @@ class App extends React.Component {
           <Header />
           <AddExercise
             update={this.state.update}
-            setView={this.changeAppView}
+            changeAppView={this.changeAppView}
             componentView={this.state.componentView }
             backToPlanner={() => this.changeAppView('table', '')}
             list={this.state.defaultExercises}
@@ -267,7 +266,7 @@ class App extends React.Component {
             activeExercise={this.state.activeExercise}
             day={this.state.day}
           />
-          <Footer setView={this.changeAppView} activeIcon={this.state.view} />
+          <Footer changeAppView={this.changeAppView} activeIcon={this.state.view} />
         </>
       );
     }

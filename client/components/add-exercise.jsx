@@ -1,25 +1,21 @@
 import React from 'react';
 import AddExerciseForm from './add-exercise-form';
-import DefaultList from './default-list-item';
+import DefaultList from './default-list';
 
 function AddExercise(props) {
-
-  function addDefault(event) {
-    props.handleAddDefault(event);
-  }
 
   if (props.componentView === 'add-home') {
     return (
       <div className="container stretch">
         <div className="row">
           <button className="btn btn-outline-primary choose-screen-button"
-            onClick={() => props.setView('add-home', 'default')}>
+            onClick={() => props.changeAppView('add-home', 'default')}>
             Add a Pre-Made Exercise
           </button>
         </div>
         <div className="row mt-5">
           <button className="btn btn-outline-primary choose-screen-button"
-            onClick={() => props.setView('add-home', 'custom')}>
+            onClick={() => props.changeAppView('add-home', 'custom')}>
             Create and Add an Exercise
           </button>
         </div>
@@ -36,7 +32,7 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercises}
-        back={() => props.setView('table', 'table')}
+        back={() => props.changeAppView('table', 'table')}
       />
     );
   }
@@ -49,7 +45,7 @@ function AddExercise(props) {
         exercise={props.activeExercise.exercise}
         description={props.activeExercise.description}
         setExercise={props.setExercises}
-        back={() => props.setView('add-home', 'add-home')}
+        back={() => props.changeAppView('add-home', 'add-home')}
       />
     );
   }
@@ -58,7 +54,7 @@ function AddExercise(props) {
     return (
       <DefaultList
         list={props.list}
-        handleAddDefault={addDefault}
+        handleAddDefault={event => props.handleAddDefault(event)}
       />
     );
   }
