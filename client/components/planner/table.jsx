@@ -28,8 +28,8 @@ function Table(props) {
 
   // otherwise, returns table populated with exercises for the day
   return (
-    <div className="container table-container">
-      <table className="main-table">
+    <div className="container max-w-99">
+      <table className="w-100">
         <tbody>
           {tableData}
         </tbody>

@@ -1,3 +1,27 @@
+/*
+*
+* Highlight and Hit ctrl+f to Find Section
+*
+* -------------------------------
+*
+*   Root Styling
+*   Header Styling
+*   Footer Styling
+*   Planner Styling
+*   Calorie Calculator Styling
+*   Timer Styling
+*   Add Exercise Styling
+*   Utility Classes
+*   Media Queries
+*
+* -------------------------------
+*
+*/
+
+
+/* ------------ */
+/* Root Styling */
+/* ------------ */
 
 #root {
   height: 85vh;
@@ -5,13 +29,9 @@
   overflow-y: auto;
 }
 
-.header {
-  width: 100%;
-}
-
-.blue {
-  color: #4682B4;
-}
+/* -------------- */
+/* Header Styling */
+/* -------------- */
 
 .app-header {
   position: sticky;
@@ -22,68 +42,9 @@
   background-color:  #4682B4;
 }
 
-.days-container {
-
-  text-align: center;
-  background-color: #4682B4;
-  color: white;
-}
-
-.clear {
-  height: 16px;
-  background-color: white;
-}
-
-.stick-to-top {
-  position: sticky;
-  top: 73px;
-  z-index: 1000;
-}
-
-.valid {
-  border: 1px solid #22EB54;
-}
-
-.invalid {
-  border: 1px solid red;
-}
-
-.bg-color-blue {
-  background-color: #4682B4;
-}
-
-.recommended-cal {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #4682B4;
-  font-size: 1.25rem;
-}
-
-.button {
-  margin: 0.2rem;
-  color: #fff;
-  background-color: #4682B4;
-  padding: 0 3rem;
-}
-
-.main-table-div {
-  margin: auto;
-  width: 80%;
-}
-
-.main-table {
-  width: 100%;
-}
-
-.main-table-body {
-  width: 100%;
-}
-
-.update-and-delete {
-  display: flex;
-  justify-content: flex-end;
-}
+/* -------------- */
+/* Footer Styling */
+/* -------------- */
 
 .footer {
   width: 100%;
@@ -102,24 +63,85 @@
   padding: .75rem 3rem;
 }
 
-.calorie-title {
-  margin: 8% 0% 13% 0%;
+.icon-hover {
+  transition: all 0.45s ease;
 }
+
+.icon-hover:hover {
+  transform: scale(1.3);
+}
+
+.active-icon {
+  transform: scale(1.3);
+}
+
+/* --------------- */
+/* Planner Styling */
+/* --------------- */
+
+.days-container {
+  text-align: center;
+  background-color: #4682B4;
+  color: white;
+}
+
+.clear {
+  height: 16px;
+  background-color: white;
+}
+
+.stick-to-top {
+  position: sticky;
+  top: 73px;
+  z-index: 1000;
+}
+
+.recommended-cal {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #4682B4;
+  font-size: 1.25rem;
+}
+
+.update-and-delete {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.exerciseRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  font-size: 1.25rem;
+}
+
+.day {
+  padding: 0 0.2rem;
+  border-left: 1px solid #dee2e6;
+  border-right: 1px solid #dee2e6;
+}
+
+.day:hover {
+  color: black;
+  cursor: pointer;
+  box-shadow: 0px 0px 5px #4682B4;
+}
+
+.active {
+  background-color: rgb(224, 133, 13);
+}
+
+/* -------------------------- */
+/* Calorie Calculator Styling */
+/* -------------------------- */
 
 .calorie-form {
   display: flex;
   justify-content: center;
   flex-direction: column;
   text-align: right;
-}
-
-.calorie-submit {
-  margin-top: 12%;
-  padding: 3% 10%;
-}
-
-.lifestyle {
-  width: 49%;
 }
 
 .calorie-modal-container {
@@ -155,53 +177,9 @@
   justify-content: space-evenly;
 }
 
-.calorie-return {
-  margin: 3% 0% 15% 0%;
-  padding: 1% 3%;
-}
-
-.calorie-m-div {
-  margin: 4% 0% 0% 0%;
-}
-
-.calorie-table {
-  margin: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.calorie-t-body {
-  margin: auto;
-  text-align: right;
-  width: 70%;
-}
-
-.calorie-t-data-textbox {
-  padding-left: 7%;
-}
-
-.navbar {
-  background-color: #4682B4;
-}
-
-.navbar-brand {
-  display: flex;
-  color: #fff;
-}
-
-.cursor-pointer {
-  cursor: pointer;
-}
-
-.pause-start {
-  position: relative;
-  bottom: 80px;
-  right: 40px;
-  background-color: blue;
-  height: 30px;
-  width: 30px;
-}
+/* ------------- */
+/* Timer Styling */
+/* ------------- */
 
 .clock-container {
   display: flex;
@@ -245,8 +223,9 @@
 }
 
 .set-time {
-  margin-top: 30px;
-  padding: 0 25px;
+  margin-top: 3rem;
+  padding: 0 3rem;
+  font-size: 2rem;
 }
 
 .time-input {
@@ -261,10 +240,6 @@
   margin-bottom: 0;
 }
 
-.set-time {
-  font-size: 2rem;
-}
-
 .close-modal {
   position: absolute;
   top: 5px;
@@ -273,74 +248,9 @@
   color: red;
 }
 
-.margin-top-12 {
-  margin-top: 12rem;
-}
-
-.max-width-350 {
-  max-width: 350px;
-}
-.do-not-show {
-  visibility: hidden;
-}
-
-.timer-state {
-  margin-top: 30px;
-}
-
-.add-exercise {
-  position: sticky;
-  width: 100%;
-  bottom: 76px;
-}
-
-.size-icon {
-  font-size: 2.5rem;
-}
-
-.size-icon-sm {
-  font-size: 2rem;
-}
-
-.icon-hover {
-  transition: all 0.45s ease;
-}
-
-.icon-hover:hover {
-  transform: scale(1.3);
-}
-
-.green {
-  color: #22EB54;
-}
-
-.white {
-  color: white;
-}
-
-.red {
-  color: #dc3545;
-}
-
-.exerciseRow {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1rem 0;
-  font-size: 1.25rem;
-}
-
-.day {
-  padding: 0 0.2rem;
-  border-left: 1px solid #dee2e6;
-  border-right: 1px solid #dee2e6;
-}
-
-.day:hover {
-  color: black;
-  cursor: pointer;
-  box-shadow: 0px 0px 5px #4682B4;
-}
+/* -------------------- */
+/* Add Exercise Styling */
+/* -------------------- */
 
 .choose-screen-button {
   font-size: 2rem;
@@ -360,12 +270,44 @@
   justify-content: center;
 }
 
-.active {
-  background-color: rgb(224, 133, 13);
+/* --------------- */
+/* Utility Classes */
+/* --------------- */
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
-.active-icon {
-  transform: scale(1.3);
+.size-icon {
+  font-size: 2.5rem;
+}
+
+.size-icon-sm {
+  font-size: 2rem;
+}
+
+.valid {
+  border: 1px solid #22EB54;
+}
+
+.invalid {
+  border: 1px solid red;
+}
+
+.blue {
+  color: #4682B4;
+}
+
+.green {
+  color: #22EB54;
+}
+
+.white {
+  color: white;
+}
+
+.red {
+  color: #dc3545;
 }
 
 .orange {
@@ -376,16 +318,23 @@ textarea {
   resize: none;
 }
 
+/* ------------- */
+/* Media Queries */
+/* ------------- */
+
 @media only screen and (max-width: 450px) {
+  /* header */
   .responsive-centering {
     justify-content: center;
   }
 
+  /* footer */
   .responsive-x-padding {
     padding-left: 1rem;
     padding-right: 1rem
   }
 
+  /* add exercise */
   .choose-screen-button {
     font-size: 2rem;
     padding: 1rem;
@@ -393,23 +342,13 @@ textarea {
 }
 
 @media only screen and (max-width: 1200px) {
-  .app-header {
-    max-width: 100%;
-  }
-
-  .recommended-cal {
-    max-width: 100%;
-  }
-
-  .days-container {
+  /* utility */
+  .max-w-99 {
     max-width: 99%;
   }
 
-  .table-container {
-    max-width: 99%;
-  }
-
-  .footer-container {
+  /* utility */
+  .max-w-100 {
     max-width: 100%;
   }
 }

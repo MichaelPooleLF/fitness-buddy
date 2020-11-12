@@ -185,8 +185,8 @@ class Stopwatch extends React.Component {
             <div className="clock">
               <h1>{this.formatTime(this.state.restMin)}:{this.formatTime(this.state.restSec)}</h1>
             </div>
-            <h1 className="timer-state">{this.state.timer}</h1>
-            <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
+            <h1 className="mt-4">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-success set-time">{this.state.isClicked}</button>
           </div>
         );
 
@@ -196,8 +196,8 @@ class Stopwatch extends React.Component {
             <div className="clock">
               <h1>{this.formatTime(this.state.restMin)}:{this.formatTime(this.state.restSec)}</h1>
             </div>
-            <h1 className="timer-state">{this.state.timer}</h1>
-            <button onClick={this.handleClick} className="btn btn-danger mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
+            <h1 className="mt-4">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-danger set-time">{this.state.isClicked}</button>
           </div>
         );
       }
@@ -209,8 +209,8 @@ class Stopwatch extends React.Component {
             <div className="clock">
               <h1>{this.formatTime(this.state.workoutMin)}:{this.formatTime(this.state.workoutSec)}</h1>
             </div>
-            <h1 className="timer-state">{this.state.timer}</h1>
-            <button onClick={this.handleClick} className="btn btn-success mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
+            <h1 className="mt-4">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-success set-time">{this.state.isClicked}</button>
           </div>
         );
 
@@ -220,8 +220,8 @@ class Stopwatch extends React.Component {
             <div className="clock">
               <h1>{this.formatTime(this.state.workoutMin)}:{this.formatTime(this.state.workoutSec)}</h1>
             </div>
-            <h1 className="timer-state">{this.state.timer}</h1>
-            <button onClick={this.handleClick} className="btn btn-danger mt-5 pr-5 pl-5 set-time">{this.state.isClicked}</button>
+            <h1 className="mt-4">{this.state.timer}</h1>
+            <button onClick={this.handleClick} className="btn btn-danger set-time">{this.state.isClicked}</button>
           </div>
         );
       }

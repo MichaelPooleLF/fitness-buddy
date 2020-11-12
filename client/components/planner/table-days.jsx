@@ -46,8 +46,8 @@ function TableDays(props) {
   return (
     <>
       <div className="clear"></div>
-      <div className="container days-container">
-        <div className="row flex-no-wrap">
+      <div className="container days-container max-w-99">
+        <div className="row flex-nowrap">
           {tableDayElements}
         </div>
       </div>
