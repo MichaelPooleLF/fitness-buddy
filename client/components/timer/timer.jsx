@@ -7,6 +7,11 @@ class Timer extends React.Component {
     super(props);
     this.state = {
       time: '00:00',
+      userTime: {
+        workout: '00:00',
+        rest: '00:00'
+      },
+      toggleUserTime: true,
       timeInterval: undefined,
       timerButton: {
         text: 'Set Time',
@@ -67,14 +72,17 @@ class Timer extends React.Component {
     });
   }
 
-  startTime() {
+  startTime(event, userTime) {
+    event.preventDefault();
     this.setState({
+      time: userTime.workout,
+      userTime: userTime,
       timeInterval: setInterval(this.calculateTime, 1000),
       timerButton: {
         text: 'Pause',
         color: 'btn-danger'
       }
-    });
+    }, this.setComponentView);
   }
 
   render() {
@@ -90,7 +98,7 @@ class Timer extends React.Component {
     } else {
       return (
         <>
-          <TimerModal />
+          <TimerModal startTime={this.startTime}/>
           <Clock time={this.state.time}/>
           <div className='d-flex justify-content-center'>
             <button onClick={this.setComponentView} className={`btn ${this.state.timerButton.color} set-time`}>{this.state.timerButton.text}</button>
