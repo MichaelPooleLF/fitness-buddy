@@ -9,6 +9,10 @@
   width: 100%;
 }
 
+.blue {
+  color: #4682B4;
+}
+
 .app-header {
   position: sticky;
   top: 0;
@@ -96,10 +100,6 @@
   display: flex;
   justify-content: space-between;
   padding: .75rem 3rem;
-}
-
-.fas {
-  color: #fff;
 }
 
 .calorie-title {
@@ -298,6 +298,10 @@
   font-size: 2.5rem;
 }
 
+.size-icon-sm {
+  font-size: 2rem;
+}
+
 .icon-hover {
   transition: all 0.45s ease;
 }
@@ -312,6 +316,18 @@
 
 .white {
   color: white;
+}
+
+.red {
+  color: #dc3545;
+}
+
+.exerciseRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 0;
+  font-size: 1.25rem;
 }
 
 .day {
