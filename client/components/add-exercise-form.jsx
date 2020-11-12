@@ -4,8 +4,8 @@ function AddExerciseForm(props) {
 
   const [name, updateName] = useState(props.activeExercise.exercise);
   const [desc, updateDesc] = useState(props.activeExercise.description);
-  const [dayId] = useState(props.activeExercise.day);
-  const [customExerciseId] = useState(props.activeExercise.customExerciseId);
+  const dayId = props.activeExercise.day;
+  const customExerciseId = props.activeExercise.customExerciseId;
 
   function handleAdd(event) {
     event.preventDefault();
