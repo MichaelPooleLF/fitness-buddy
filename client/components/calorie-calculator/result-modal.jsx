@@ -1,6 +1,6 @@
 import React from 'react';
 
-function CalorieCounterResult(props) {
+function ResultModal(props) {
 
   // this component returns a modal that displays the calculated daily calorie needs
   return (
@@ -19,4 +19,4 @@ function CalorieCounterResult(props) {
   );
 }
 
-export default CalorieCounterResult;
+export default ResultModal;
