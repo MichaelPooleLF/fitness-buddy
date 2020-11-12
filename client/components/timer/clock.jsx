@@ -2,7 +2,11 @@ import React from 'react';
 
 function Clock(props) {
   return (
-    <h1>Clock</h1>
+    <div className="clock-container">
+      <div className="clock">
+        <h1>{props.time}</h1>
+      </div>
+    </div>
   );
 }
 

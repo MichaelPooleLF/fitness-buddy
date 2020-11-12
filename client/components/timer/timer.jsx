@@ -1,15 +1,17 @@
 import React from 'react';
 import Clock from './clock';
-// import TimerModal from './timer-modal';
+import TimerModal from './timer-modal';
 
 class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      componentView: props.componentView,
-      time: '0:10',
+      time: '00:00',
       timeInterval: undefined,
-      buttonText: 'Start'
+      timerButton: {
+        text: 'Set Time',
+        color: 'btn-success'
+      }
     };
     this.setComponentView = this.setComponentView.bind(this);
     this.calculateTime = this.calculateTime.bind(this);
@@ -17,14 +19,10 @@ class Timer extends React.Component {
   }
 
   setComponentView() {
-    if (this.state.componentView === 'stopwatch') {
-      this.setState({
-        componentView: 'timer-modal'
-      });
+    if (this.props.componentView === 'stopwatch') {
+      this.props.changeAppView('stopwatch', 'timer-modal');
     } else {
-      this.setState({
-        componentView: 'stopwatch'
-      });
+      this.props.changeAppView('stopwatch');
     }
   }
 
@@ -33,20 +31,23 @@ class Timer extends React.Component {
     let minutes = parseInt(timeArray[0], 10);
     let seconds = parseInt(timeArray[1], 10);
 
-    if (minutes === 0 && seconds === 0) {
-      this.setState({
-        timeInterval: clearInterval(this.state.timeInterval),
-        time: '00:00',
-        buttonText: 'Start'
-      });
-      return;
-    }
-
     if (seconds === 0) {
       seconds = 59;
       minutes--;
     } else {
       seconds--;
+    }
+
+    if (minutes === 0 && seconds === 0) {
+      this.setState({
+        timeInterval: clearInterval(this.state.timeInterval),
+        time: '00:00',
+        timerButton: {
+          text: 'Set Time',
+          color: 'btn-success'
+        }
+      });
+      return;
     }
 
     if (seconds < 10) {
@@ -69,20 +70,34 @@ class Timer extends React.Component {
   startTime() {
     this.setState({
       timeInterval: setInterval(this.calculateTime, 1000),
-      buttonText: 'Stop'
+      timerButton: {
+        text: 'Pause',
+        color: 'btn-danger'
+      }
     });
   }
 
   render() {
-    return (
-      <>
-        <h1 onClick={this.setComponentView}>{this.state.componentView}</h1>
-        <Clock />
-        <p>{this.state.time}</p>
-        <button className="btn btn-success"
-          onClick={this.startTime}>{this.state.buttonText}</button>
-      </>
-    );
+    if (this.props.componentView === 'stopwatch') {
+      return (
+        <>
+          <Clock time={this.state.time}/>
+          <div className='d-flex justify-content-center'>
+            <button onClick={this.setComponentView} className={`btn ${this.state.timerButton.color} set-time`}>{this.state.timerButton.text}</button>
+          </div>
+        </>
+      );
+    } else {
+      return (
+        <>
+          <TimerModal />
+          <Clock time={this.state.time}/>
+          <div className='d-flex justify-content-center'>
+            <button onClick={this.setComponentView} className={`btn ${this.state.timerButton.color} set-time`}>{this.state.timerButton.text}</button>
+          </div>
+        </>
+      );
+    }
   }
 }
 
