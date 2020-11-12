@@ -204,7 +204,7 @@ app.delete('/api/routine', (req, res, next) => {
 });
 
 // updates calories in routine table with new value provided in request body
-app.put('/api/routine/calories', (req, res, next) => {
+app.put('/api/routine/update/calories', (req, res, next) => {
   const calories = parseInt(req.body.calories);
 
   if (!Number.isInteger(calories) || calories <= 0) {
