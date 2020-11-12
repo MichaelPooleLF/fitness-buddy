@@ -4,16 +4,16 @@ import React from 'react';
 function Footer(props) {
 
   const icons = [
-    { image: 'fas fa-calendar-alt', path: 'table', color: '', active: '' },
-    { image: 'fas fa-apple-alt', path: 'calorie', color: '', active: '' },
-    { image: 'fas fa-clock', path: 'stopwatch', color: '', active: '' },
+    { image: 'fas fa-calendar-alt', path: 'table', color: 'white', active: '' },
+    { image: 'fas fa-apple-alt', path: 'calorie', color: 'white', active: '' },
+    { image: 'fas fa-clock', path: 'stopwatch', color: 'white', active: '' },
     { image: 'fas fa-plus', path: 'add-home', color: 'green', active: '' }
   ];
 
   icons.forEach(icon => {
     if (icon.path === props.activeIcon) {
       icon.active = 'active-icon';
-      if (!icon.color) {
+      if (icon.color === 'white') {
         icon.color = 'orange';
       }
     }
