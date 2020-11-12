@@ -111,42 +111,17 @@ class App extends React.Component {
 
   // calculates recommended daily calories based on calorie-counter user input
   // inputData parameter is an object with gender, weight, height, age, and activity
-  updateCalories(inputData) {
-    const { gender, weight, height, age, activity } = inputData;
-    let bmr = null;
-    if (gender.value === 'Male') {
-      bmr = 66 + (6.3 * weight.value) + (12.9 * height.value) - (6.8 * age.value);
-    } else {
-      bmr = 655 + (4.3 * weight.value) + (4.7 * height.value) - (4.7 * age.value);
-    }
-    let calories = null;
-    switch (activity.value) {
-      case 'Sedentary':
-        calories = bmr * 1.2;
-        break;
-      case 'Lightly Active':
-        calories = bmr * 1.375;
-        break;
-      case 'Moderately Active':
-        calories = bmr * 1.55;
-        break;
-      case 'Very Active':
-        calories = bmr * 1.725;
-        break;
-      case 'Extra Active':
-        calories = bmr * 1.9;
-        break;
-      default:
-        calories = 0;
-    }
+  updateCalories(calories) {
     const data = { calories: calories };
-    fetch('/api/routine/calories', {
+    fetch('/api/routine/update/calories', {
       method: 'PUT',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(data)
     })
       .then(result => result.json())
-      .then(data => this.setState({ calories: data.recommendedCalories }));
+      .then(data => {
+        this.setState({ calories: data.recommendedCalories });
+      });
   }
 
   // method matches exercise clicked with exercise in state and set it to the activeExercise
@@ -235,7 +210,7 @@ class App extends React.Component {
         <>
           <Header />
           <CalorieCounter
-            caloriesFunction={this.updateCalories}
+            updateCalories={this.updateCalories}
             calories={this.state.calories}
             componentView={this.state.componentView}
             changeAppView={this.changeAppView}
