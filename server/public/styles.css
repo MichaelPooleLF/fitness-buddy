@@ -12,6 +12,7 @@
 *   Timer Styling
 *   Add Exercise Styling
 *   Utility Classes
+*   Browser Specific
 *   Media Queries
 *
 * -------------------------------
@@ -222,8 +223,13 @@
   align-items: center;
 }
 
+.legend-text {
+  font-size: 2rem;
+  font-weight: 600;
+}
+
 .set-time {
-  margin-top: 3rem;
+  /* margin-top: 3rem; */
   padding: 0 3rem;
   font-size: 2rem;
 }
@@ -233,6 +239,8 @@
   height: 75px;
   font-size: 3rem;
   text-align: center;
+  border: 1px solid black;
+  z-index: 1000;
 }
 
 .time-seperator {
@@ -316,6 +324,22 @@
 
 textarea {
   resize: none;
+}
+
+/* ---------------- */
+/* Browser Specific */
+/* ---------------- */
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
 }
 
 /* ------------- */
