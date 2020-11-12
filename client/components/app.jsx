@@ -1,12 +1,9 @@
 import React from 'react';
-import Header from './header';
-import Table from './table';
-import TableDays from './table-days';
-import AddExercise from './add-exercise';
-import Footer from './footer';
-import CalorieCounter from './calorie-counter';
-import RecommendedCalories from './recommended-cal';
-import Stopwatch from './stopwatch';
+import { Header, Footer } from './head-and-foot';
+import { Table, TableDays, RecommendedCalories } from './planner';
+import { AddExercise } from './add-exercise-feature';
+import { CalorieCalculator } from './calorie-calculator';
+import { Stopwatch } from './timer';
 
 /*
 * this is an app for users to organize their exercises for the week
@@ -209,7 +206,7 @@ class App extends React.Component {
       return (
         <>
           <Header />
-          <CalorieCounter
+          <CalorieCalculator
             updateCalories={this.updateCalories}
             calories={this.state.calories}
             componentView={this.state.componentView}

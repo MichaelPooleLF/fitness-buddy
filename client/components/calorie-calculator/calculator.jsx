@@ -1,8 +1,8 @@
 import React from 'react';
-import CalorieCounterResult from './calorie-counter-result';
+import ResultModal from './result-modal';
 import CalorieForm from './calorie-form';
 
-class CalorieCounter extends React.Component {
+class CalorieCalculator extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -144,7 +144,7 @@ class CalorieCounter extends React.Component {
     if (this.props.componentView === 'result') {
       return (
         <>
-          <CalorieCounterResult
+          <ResultModal
             values={this.state}
             calories={this.state.calories}
             returnToCalculator={() => this.props.changeAppView('calorie')}
@@ -168,4 +168,4 @@ class CalorieCounter extends React.Component {
   }
 }
 
-export default CalorieCounter;
+export default CalorieCalculator;
