@@ -13,7 +13,7 @@ function Footer(props) {
   icons.forEach(icon => {
     if (icon.path === props.activeIcon) {
       icon.active = 'active-icon';
-      if (icon.color === 'white') {
+      if (icon.color === 'white') { // if active icon is for add-exercise icon, this keeps icon color green
         icon.color = 'orange';
       }
     }
@@ -30,7 +30,7 @@ function Footer(props) {
 
   return (
     <div className="footer">
-      <div className="container footer-container responsive-x-padding">
+      <div className="container footer-container responsive-x-padding max-w-100">
         {iconElementArray}
       </div>
     </div>

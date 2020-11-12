@@ -7,7 +7,7 @@ function RecommendedCalories(props) {
 
   if (!hidden) {
     return (
-      <div className="container recommended-cal py-1">
+      <div className="container recommended-cal max-w-100 py-1">
         <p className="mb-0 white">{`Recommended Daily Calories: ${props.calories}`}</p>
         <i className="fas fa-times cursor-pointer white" onClick={() => toggleHidden(!hidden)}></i>
       </div>
