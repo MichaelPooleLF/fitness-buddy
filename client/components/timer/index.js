@@ -1,3 +1,3 @@
-import Stopwatch from './stopwatch';
+import Stopwatch from './timer';
 
 export { Stopwatch };
