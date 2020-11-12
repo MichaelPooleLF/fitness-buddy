@@ -1,4 +1,5 @@
 import React from 'react';
+import Clock from './clock';
 // import TimerModal from './timer-modal';
 
 class Timer extends React.Component {
@@ -76,6 +77,7 @@ class Timer extends React.Component {
     return (
       <>
         <h1 onClick={this.setComponentView}>{this.state.componentView}</h1>
+        <Clock />
         <p>{this.state.time}</p>
         <button className="btn btn-success"
           onClick={this.startTime}>{this.state.buttonText}</button>
