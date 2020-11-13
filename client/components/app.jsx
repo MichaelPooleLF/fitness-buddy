@@ -25,7 +25,7 @@ class App extends React.Component {
         description: ''
       },
       calories: 1935, // user daily recommended calories
-      componentView: 'timer-modal'
+      componentView: 'stopwatch'
     };
     this.setExercises = this.setExercises.bind(this);
     this.changeAppView = this.changeAppView.bind(this);

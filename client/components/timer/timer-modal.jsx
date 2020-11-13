@@ -16,7 +16,7 @@ function TimerModal(props) {
     <div className="timer-modal-background" onClick={
       event => {
         if (event.target.className === 'timer-modal-background') {
-          props.exitModal();
+          props.changeAppView('stopwatch');
         }
       }
     }>
@@ -34,7 +34,7 @@ function TimerModal(props) {
                 <input className="time-input"
                   type="number" id="workout-minutes"
                   name="workout-minutes"
-                  placeholder="00" min="0" max="59"
+                  defaultValue="00" min="0" max="59"
                   onChange={event => {
                     const wMin = event.target.value;
                     (wMin ? setWMin(wMin) : setWMin('0'));
@@ -49,7 +49,7 @@ function TimerModal(props) {
                   type="number"
                   id="workout-seconds"
                   name="workout-seconds"
-                  placeholder="00" min="1" max="59"
+                  defaultValue="00" min="0" max="59"
                   required
                   onChange={event => {
                     const wSec = event.target.value;
@@ -70,7 +70,7 @@ function TimerModal(props) {
                   type="number"
                   id="rest-minutes"
                   name="rest-minutes"
-                  placeholder="00" min="0" max="59"
+                  defaultValue="00" min="0" max="59"
                   onChange={event => {
                     const rMin = event.target.value;
                     (rMin ? setRMin(rMin) : setRMin('0'));
@@ -85,7 +85,7 @@ function TimerModal(props) {
                   type="number"
                   id="rest-seconds"
                   name="rest-seconds"
-                  placeholder="00" min="1" max="59"
+                  defaultValue="00" min="0" max="59"
                   required
                   onChange={event => {
                     const rSec = event.target.value;
@@ -99,7 +99,7 @@ function TimerModal(props) {
           {/* submit button */}
           <div className="form-group mt-5">
             <div className="form-row justify-content-center">
-              <button className="btn btn-primary set-time">Set Time</button>
+              <button className="btn btn-primary set-time">Workout!</button>
             </div>
           </div>
 

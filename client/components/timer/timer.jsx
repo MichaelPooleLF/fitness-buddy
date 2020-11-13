@@ -12,20 +12,23 @@ class Timer extends React.Component {
         rest: '0:0'
       },
       toggleUserTime: true,
-      timeInterval: undefined,
-      timerButton: {
-        text: 'Set Time',
-        color: 'btn-success'
-      }
+      paused: false,
+      timeInterval: undefined
     };
     this.setComponentView = this.setComponentView.bind(this);
     this.calculateTime = this.calculateTime.bind(this);
     this.startTime = this.startTime.bind(this);
   }
 
+  componentWillUnmount() {
+    this.resetPage();
+  }
+
   setComponentView() {
     if (this.props.componentView === 'stopwatch') {
       this.props.changeAppView('stopwatch', 'timer-modal');
+    } else if (this.props.componentView === 'timer-modal') {
+      this.props.changeAppView('stopwatch', 'set');
     } else {
       this.props.changeAppView('stopwatch');
     }
@@ -33,22 +36,29 @@ class Timer extends React.Component {
 
   pauseTime() {
     this.setState({
-      timeInterval: clearInterval(this.state.timeInterval),
-      timerButton: {
-        text: 'Resume',
-        color: 'btn-success'
-      }
+      paused: true,
+      timeInterval: clearInterval(this.state.timeInterval)
     });
   }
 
   resumeTime() {
     this.setState({
-      timeInterval: setInterval(this.calculateTime, 1000),
-      timerButton: {
-        text: 'Pause',
-        color: 'btn-danger'
-      }
+      paused: false,
+      timeInterval: setInterval(this.calculateTime, 1000)
     });
+  }
+
+  resetPage() {
+    this.setState({
+      time: '0:0',
+      userTime: {
+        workout: '0:0',
+        rest: '0:0'
+      },
+      toggleUserTime: true,
+      paused: false,
+      timeInterval: clearInterval(this.state.timeInterval)
+    }, this.setComponentView);
   }
 
   calculateTime() {
@@ -93,11 +103,7 @@ class Timer extends React.Component {
       this.setState({
         time: userTime.workout,
         userTime: userTime,
-        timeInterval: setInterval(this.calculateTime, 1000),
-        timerButton: {
-          text: 'Pause',
-          color: 'btn-danger'
-        }
+        timeInterval: setInterval(this.calculateTime, 1000)
       }, this.setComponentView);
     }
   }
@@ -126,21 +132,30 @@ class Timer extends React.Component {
     if (this.props.componentView === 'stopwatch') {
       return (
         <>
-          <h1 className="text-center">{this.state.toggleUserTime ? 'Workout' : 'Rest'}</h1>
-          <Clock time={this.formatTime(this.state.time)}/>
-          <div className='d-flex justify-content-center'>
-            <button className={`btn ${this.state.timerButton.color} set-time`}
-              onClick={() => {
-                if (this.state.timerButton.text === 'Pause') {
-                  this.pauseTime();
-                } else if (this.state.timerButton.text === 'Resume') {
-                  this.resumeTime();
-                } else {
-                  this.setComponentView();
-                }
-              }} >
-              {this.state.timerButton.text}
-            </button>
+          <div className="container">
+            <Clock time={this.formatTime(this.state.time)}/>
+            <div className='row justify-content-center mt-5'>
+              <button className={'btn btn-success set-time'}
+                onClick={this.setComponentView} >
+                Set Time
+              </button>
+            </div>
+          </div>
+        </>
+      );
+    } else if (this.props.componentView === 'set') {
+      return (
+        <>
+          <div className="container">
+            <Clock time={this.formatTime(this.state.time)}/>
+            <h1 className="text-center my-5">{this.state.toggleUserTime ? 'Workout!' : 'Rest...'}</h1>
+            <div className='row justify-content-center timer-buttons'>
+              <i className="fas fa-redo-alt timer-icon blue reset mr-5"
+                onClick={() => this.resetPage()}></i>
+              <i className={`${this.state.paused ? 'fas fa-play green' : 'fas fa-pause red'} timer-icon`}
+                onClick={this.state.paused ? () => this.resumeTime() : () => this.pauseTime()} >
+              </i>
+            </div>
           </div>
         </>
       );
@@ -148,12 +163,12 @@ class Timer extends React.Component {
       return (
         <>
           <TimerModal startTime={this.startTime}
-            exitModal={this.setComponentView}/>
+            changeAppView={this.props.changeAppView}/>
           <h1 className="text-center">{this.state.toggleUserTime ? 'Workout' : 'Rest'}</h1>
           <Clock time={this.formatTime(this.state.time)}/>
           <div className='d-flex justify-content-center'>
-            <button className={`btn ${this.state.timerButton.color} set-time`}>
-              {this.state.timerButton.text}
+            <button className={'btn btn-success set-time'}>
+              Set Time
             </button>
           </div>
         </>
