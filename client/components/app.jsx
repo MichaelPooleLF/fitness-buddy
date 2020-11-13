@@ -3,7 +3,7 @@ import { Header, Footer } from './head-and-foot';
 import { Table, TableDays, RecommendedCalories } from './planner';
 import { AddExercise } from './add-exercise-feature';
 import { CalorieCalculator } from './calorie-calculator';
-import { Stopwatch } from './timer';
+import { Timer } from './timer';
 
 /*
 * this is an app for users to organize their exercises for the week
@@ -216,12 +216,14 @@ class App extends React.Component {
         </>
       );
 
-      // sets view to a stopwatch users can use to time their workout and rest periods
-    } else if (this.state.view === 'stopwatch') {
+      // sets view to a timer users can use to time their workout and rest periods
+    } else if (this.state.view === 'timer') {
       return (
         <>
           <Header />
-          <Stopwatch/>
+          <Timer
+            changeAppView={this.changeAppView}
+            componentView={this.state.componentView}/>
           <Footer changeAppView={this.changeAppView} activeIcon={this.state.view}/>
         </>
       );
