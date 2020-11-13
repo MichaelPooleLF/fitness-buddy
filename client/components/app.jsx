@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'timer',
+      view: 'table',
       day: '1', // day corresponds to day of the week, where 1 = sunday, 2 = monday, etc.
       exercises: [], // array of objects representing exercises user has added to the current day
       defaultExercises: [], // array of objects representing default exercises in our database
@@ -25,7 +25,7 @@ class App extends React.Component {
         description: ''
       },
       calories: 1935, // user daily recommended calories
-      componentView: 'timer'
+      componentView: 'table'
     };
     this.setExercises = this.setExercises.bind(this);
     this.changeAppView = this.changeAppView.bind(this);

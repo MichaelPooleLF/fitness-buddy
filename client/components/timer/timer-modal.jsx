@@ -16,7 +16,7 @@ function TimerModal(props) {
     <div className="timer-modal-background" onClick={
       event => {
         if (event.target.className === 'timer-modal-background') {
-          props.changeAppView('stopwatch');
+          props.changeAppView('timer');
         }
       }
     }>
