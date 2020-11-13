@@ -3,7 +3,7 @@ import { Header, Footer } from './head-and-foot';
 import { Table, TableDays, RecommendedCalories } from './planner';
 import { AddExercise } from './add-exercise-feature';
 import { CalorieCalculator } from './calorie-calculator';
-import { Stopwatch } from './timer';
+import { Timer } from './timer';
 
 /*
 * this is an app for users to organize their exercises for the week
@@ -15,7 +15,7 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      view: 'stopwatch',
+      view: 'timer',
       day: '1', // day corresponds to day of the week, where 1 = sunday, 2 = monday, etc.
       exercises: [], // array of objects representing exercises user has added to the current day
       defaultExercises: [], // array of objects representing default exercises in our database
@@ -25,7 +25,7 @@ class App extends React.Component {
         description: ''
       },
       calories: 1935, // user daily recommended calories
-      componentView: 'stopwatch'
+      componentView: 'timer'
     };
     this.setExercises = this.setExercises.bind(this);
     this.changeAppView = this.changeAppView.bind(this);
@@ -216,12 +216,12 @@ class App extends React.Component {
         </>
       );
 
-      // sets view to a stopwatch users can use to time their workout and rest periods
-    } else if (this.state.view === 'stopwatch') {
+      // sets view to a timer users can use to time their workout and rest periods
+    } else if (this.state.view === 'timer') {
       return (
         <>
           <Header />
-          <Stopwatch
+          <Timer
             changeAppView={this.changeAppView}
             componentView={this.state.componentView}/>
           <Footer changeAppView={this.changeAppView} activeIcon={this.state.view}/>

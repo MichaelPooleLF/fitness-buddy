@@ -25,12 +25,12 @@ class Timer extends React.Component {
   }
 
   setComponentView() {
-    if (this.props.componentView === 'stopwatch') {
-      this.props.changeAppView('stopwatch', 'timer-modal');
+    if (this.props.componentView === 'timer') {
+      this.props.changeAppView('timer', 'timer-modal');
     } else if (this.props.componentView === 'timer-modal') {
-      this.props.changeAppView('stopwatch', 'set');
+      this.props.changeAppView('timer', 'set');
     } else {
-      this.props.changeAppView('stopwatch');
+      this.props.changeAppView('timer');
     }
   }
 
@@ -129,7 +129,7 @@ class Timer extends React.Component {
   }
 
   render() {
-    if (this.props.componentView === 'stopwatch') {
+    if (this.props.componentView === 'timer') {
       return (
         <>
           <div className="container">

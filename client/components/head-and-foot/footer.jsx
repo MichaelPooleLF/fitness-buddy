@@ -6,7 +6,7 @@ function Footer(props) {
   const icons = [
     { image: 'fas fa-calendar-alt', path: 'table', color: 'white', active: '' },
     { image: 'fas fa-apple-alt', path: 'calorie', color: 'white', active: '' },
-    { image: 'fas fa-clock', path: 'stopwatch', color: 'white', active: '' },
+    { image: 'fas fa-clock', path: 'timer', color: 'white', active: '' },
     { image: 'fas fa-plus', path: 'add-home', color: 'green', active: '' }
   ];
 
