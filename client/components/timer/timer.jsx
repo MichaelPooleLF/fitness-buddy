@@ -32,7 +32,23 @@ class Timer extends React.Component {
   }
 
   pauseTime() {
+    this.setState({
+      timeInterval: clearInterval(this.state.timeInterval),
+      timerButton: {
+        text: 'Resume',
+        color: 'btn-success'
+      }
+    });
+  }
 
+  resumeTime() {
+    this.setState({
+      timeInterval: setInterval(this.calculateTime, 1000),
+      timerButton: {
+        text: 'Pause',
+        color: 'btn-danger'
+      }
+    });
   }
 
   calculateTime() {
@@ -113,7 +129,18 @@ class Timer extends React.Component {
           <h1 className="text-center">{this.state.toggleUserTime ? 'Workout' : 'Rest'}</h1>
           <Clock time={this.formatTime(this.state.time)}/>
           <div className='d-flex justify-content-center'>
-            <button onClick={this.setComponentView} className={`btn ${this.state.timerButton.color} set-time`}>{this.state.timerButton.text}</button>
+            <button className={`btn ${this.state.timerButton.color} set-time`}
+              onClick={() => {
+                if (this.state.timerButton.text === 'Pause') {
+                  this.pauseTime();
+                } else if (this.state.timerButton.text === 'Resume') {
+                  this.resumeTime();
+                } else {
+                  this.setComponentView();
+                }
+              }} >
+              {this.state.timerButton.text}
+            </button>
           </div>
         </>
       );
@@ -125,7 +152,9 @@ class Timer extends React.Component {
           <h1 className="text-center">{this.state.toggleUserTime ? 'Workout' : 'Rest'}</h1>
           <Clock time={this.formatTime(this.state.time)}/>
           <div className='d-flex justify-content-center'>
-            <button onClick={this.setComponentView} className={`btn ${this.state.timerButton.color} set-time`}>{this.state.timerButton.text}</button>
+            <button className={`btn ${this.state.timerButton.color} set-time`}>
+              {this.state.timerButton.text}
+            </button>
           </div>
         </>
       );
