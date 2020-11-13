@@ -13,14 +13,17 @@ function TimerModal(props) {
   };
 
   return (
-    <div className="timer-modal-background">
+    <div className="timer-modal-background" onClick={
+      event => {
+        if (event.target.className === 'timer-modal-background') {
+          props.exitModal();
+        }
+      }
+    }>
       <div className="timer-modal-content">
 
         {/* start timer modal form */}
-        <form className="my-4" onSubmit={event => props.startTime(event, userInput)}>
-
-          {/* close button */}
-          <i className="fas fa-times close-modal cursor-pointer"></i>
+        <form className="my-4" onSubmit={event => props.startTime(event, userInput)} noValidate>
 
           {/* start workout time section */}
           <fieldset className="form-group">
@@ -31,7 +34,7 @@ function TimerModal(props) {
                 <input className="time-input"
                   type="number" id="workout-minutes"
                   name="workout-minutes"
-                  placeholder="00" min="1" max="59"
+                  placeholder="00" min="0" max="59"
                   onChange={event => {
                     const wMin = event.target.value;
                     (wMin ? setWMin(wMin) : setWMin('0'));
@@ -41,12 +44,13 @@ function TimerModal(props) {
                 <p className="time-seperator">:</p>
               </div>
               <div className="form-group col-4 d-flex justify-content-center">
-                <label htmlFor="workout-minutes" className="sr-only">Workout Seconds</label>
+                <label htmlFor="workout-seconds" className="sr-only">Workout Seconds</label>
                 <input className="time-input"
                   type="number"
-                  id="workout-minutes"
-                  name="workout-minutes"
+                  id="workout-seconds"
+                  name="workout-seconds"
                   placeholder="00" min="1" max="59"
+                  required
                   onChange={event => {
                     const wSec = event.target.value;
                     (wSec ? setWSec(wSec) : setWSec('0'));
@@ -66,7 +70,7 @@ function TimerModal(props) {
                   type="number"
                   id="rest-minutes"
                   name="rest-minutes"
-                  placeholder="00" min="1" max="59"
+                  placeholder="00" min="0" max="59"
                   onChange={event => {
                     const rMin = event.target.value;
                     (rMin ? setRMin(rMin) : setRMin('0'));
@@ -79,9 +83,10 @@ function TimerModal(props) {
                 <label htmlFor="rest-Seconds" className="sr-only">Rest Seconds</label>
                 <input className="time-input"
                   type="number"
-                  id="rest-Seconds"
-                  name="rest-Seconds"
+                  id="rest-seconds"
+                  name="rest-seconds"
                   placeholder="00" min="1" max="59"
+                  required
                   onChange={event => {
                     const rSec = event.target.value;
                     (rSec ? setRSec(rSec) : setRSec('0'));

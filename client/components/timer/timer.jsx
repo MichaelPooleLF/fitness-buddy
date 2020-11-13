@@ -6,10 +6,10 @@ class Timer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      time: '00:00',
+      time: '0:0',
       userTime: {
-        workout: '00:00',
-        rest: '00:00'
+        workout: '0:0',
+        rest: '0:0'
       },
       toggleUserTime: true,
       timeInterval: undefined,
@@ -31,10 +31,30 @@ class Timer extends React.Component {
     }
   }
 
+  pauseTime() {
+
+  }
+
   calculateTime() {
     const timeArray = this.state.time.split(':');
     let minutes = parseInt(timeArray[0], 10);
     let seconds = parseInt(timeArray[1], 10);
+
+    if (minutes === 0 && seconds === 0) {
+      if (this.state.toggleUserTime) {
+        this.setState({
+          time: this.state.userTime.rest,
+          toggleUserTime: !this.state.toggleUserTime
+        });
+        return;
+      } else {
+        this.setState({
+          time: this.state.userTime.workout,
+          toggleUserTime: !this.state.toggleUserTime
+        });
+        return;
+      }
+    }
 
     if (seconds === 0) {
       seconds = 59;
@@ -43,17 +63,33 @@ class Timer extends React.Component {
       seconds--;
     }
 
-    if (minutes === 0 && seconds === 0) {
+    this.setState({
+      time: `${minutes}:${seconds}`
+    });
+  }
+
+  startTime(event, userTime) {
+    event.preventDefault();
+    const form = event.target;
+    const formIsValid = form.checkValidity();
+
+    if (formIsValid) {
       this.setState({
-        timeInterval: clearInterval(this.state.timeInterval),
-        time: '00:00',
+        time: userTime.workout,
+        userTime: userTime,
+        timeInterval: setInterval(this.calculateTime, 1000),
         timerButton: {
-          text: 'Set Time',
-          color: 'btn-success'
+          text: 'Pause',
+          color: 'btn-danger'
         }
-      });
-      return;
+      }, this.setComponentView);
     }
+  }
+
+  formatTime(time) {
+    const timeArray = time.split(':');
+    let minutes = parseInt(timeArray[0], 10);
+    let seconds = parseInt(timeArray[1], 10);
 
     if (seconds < 10) {
       seconds = '0' + seconds.toString();
@@ -67,29 +103,15 @@ class Timer extends React.Component {
       minutes = minutes.toString();
     }
 
-    this.setState({
-      time: `${minutes}:${seconds}`
-    });
-  }
-
-  startTime(event, userTime) {
-    event.preventDefault();
-    this.setState({
-      time: userTime.workout,
-      userTime: userTime,
-      timeInterval: setInterval(this.calculateTime, 1000),
-      timerButton: {
-        text: 'Pause',
-        color: 'btn-danger'
-      }
-    }, this.setComponentView);
+    return `${minutes}:${seconds}`;
   }
 
   render() {
     if (this.props.componentView === 'stopwatch') {
       return (
         <>
-          <Clock time={this.state.time}/>
+          <h1 className="text-center">{this.state.toggleUserTime ? 'Workout' : 'Rest'}</h1>
+          <Clock time={this.formatTime(this.state.time)}/>
           <div className='d-flex justify-content-center'>
             <button onClick={this.setComponentView} className={`btn ${this.state.timerButton.color} set-time`}>{this.state.timerButton.text}</button>
           </div>
@@ -98,8 +120,10 @@ class Timer extends React.Component {
     } else {
       return (
         <>
-          <TimerModal startTime={this.startTime}/>
-          <Clock time={this.state.time}/>
+          <TimerModal startTime={this.startTime}
+            exitModal={this.setComponentView}/>
+          <h1 className="text-center">{this.state.toggleUserTime ? 'Workout' : 'Rest'}</h1>
+          <Clock time={this.formatTime(this.state.time)}/>
           <div className='d-flex justify-content-center'>
             <button onClick={this.setComponentView} className={`btn ${this.state.timerButton.color} set-time`}>{this.state.timerButton.text}</button>
           </div>
