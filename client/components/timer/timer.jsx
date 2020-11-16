@@ -11,6 +11,7 @@ class Timer extends React.Component {
         workout: '0:0',
         rest: '0:0'
       },
+      reps: 0,
       toggleUserTime: true,
       paused: false,
       timeInterval: undefined
@@ -20,8 +21,52 @@ class Timer extends React.Component {
     this.startTime = this.startTime.bind(this);
   }
 
-  componentWillUnmount() {
-    this.resetPage();
+  startTime(event, userTime) {
+    event.preventDefault();
+    const form = event.target;
+    const formIsValid = form.checkValidity();
+
+    if (formIsValid) {
+      this.setState({
+        time: userTime.workout,
+        userTime: userTime,
+        timeInterval: setInterval(this.calculateTime, 1000)
+      }, this.setComponentView);
+    }
+  }
+
+  calculateTime() {
+    const timeArray = this.state.time.split(':');
+    let minutes = parseInt(timeArray[0], 10);
+    let seconds = parseInt(timeArray[1], 10);
+
+    if (minutes === 0 && seconds === 0) {
+      if (this.state.toggleUserTime) {
+        this.setState({
+          time: this.state.userTime.rest,
+          toggleUserTime: !this.state.toggleUserTime
+        });
+        return;
+      } else {
+        this.setState({
+          time: this.state.userTime.workout,
+          toggleUserTime: !this.state.toggleUserTime,
+          reps: this.state.reps + 1
+        });
+        return;
+      }
+    }
+
+    if (seconds === 0) {
+      seconds = 59;
+      minutes--;
+    } else {
+      seconds--;
+    }
+
+    this.setState({
+      time: `${minutes}:${seconds}`
+    });
   }
 
   setComponentView() {
@@ -48,6 +93,10 @@ class Timer extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+    this.resetPage();
+  }
+
   resetPage() {
     this.setState({
       time: '0:0',
@@ -55,57 +104,11 @@ class Timer extends React.Component {
         workout: '0:0',
         rest: '0:0'
       },
+      reps: 0,
       toggleUserTime: true,
       paused: false,
       timeInterval: clearInterval(this.state.timeInterval)
     }, this.setComponentView);
-  }
-
-  calculateTime() {
-    const timeArray = this.state.time.split(':');
-    let minutes = parseInt(timeArray[0], 10);
-    let seconds = parseInt(timeArray[1], 10);
-
-    if (minutes === 0 && seconds === 0) {
-      if (this.state.toggleUserTime) {
-        this.setState({
-          time: this.state.userTime.rest,
-          toggleUserTime: !this.state.toggleUserTime
-        });
-        return;
-      } else {
-        this.setState({
-          time: this.state.userTime.workout,
-          toggleUserTime: !this.state.toggleUserTime
-        });
-        return;
-      }
-    }
-
-    if (seconds === 0) {
-      seconds = 59;
-      minutes--;
-    } else {
-      seconds--;
-    }
-
-    this.setState({
-      time: `${minutes}:${seconds}`
-    });
-  }
-
-  startTime(event, userTime) {
-    event.preventDefault();
-    const form = event.target;
-    const formIsValid = form.checkValidity();
-
-    if (formIsValid) {
-      this.setState({
-        time: userTime.workout,
-        userTime: userTime,
-        timeInterval: setInterval(this.calculateTime, 1000)
-      }, this.setComponentView);
-    }
   }
 
   formatTime(time) {
@@ -148,7 +151,8 @@ class Timer extends React.Component {
         <>
           <div className="container">
             <Clock time={this.formatTime(this.state.time)}/>
-            <h1 className="text-center my-5">{this.state.toggleUserTime ? 'Workout!' : 'Rest...'}</h1>
+            <h1 className="text-center mt-3 mb-0">{this.state.toggleUserTime ? 'Workout!' : 'Rest...'}</h1>
+            <h2 className="text-center my-3">{`Reps: ${this.state.reps}`}</h2>
             <div className='row justify-content-center timer-buttons'>
               <i className="fas fa-redo-alt timer-icon blue reset mr-5"
                 onClick={() => this.resetPage()}></i>
