@@ -201,6 +201,7 @@
 }
 
 .timer-modal-background {
+  cursor: pointer;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -214,6 +215,7 @@
 }
 
 .timer-modal-content {
+  cursor: default;
   position: relative;
   background-color: white;
   width: 300px;
@@ -221,6 +223,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.close-timer {
+  cursor: pointer;
+  letter-spacing: 0.5px;
+  border-bottom: 1px solid #dc3545;
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  color: #dc3545;
 }
 
 .legend-text {
