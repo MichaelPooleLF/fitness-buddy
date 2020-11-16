@@ -15,7 +15,8 @@ function TimerModal(props) {
   return (
     <div className="timer-modal-background" onClick={
       event => {
-        if (event.target.className === 'timer-modal-background') {
+        const elementClass = event.target.className;
+        if (elementClass === 'timer-modal-background' || elementClass === 'close-timer') {
           props.changeAppView('timer');
         }
       }
@@ -24,6 +25,8 @@ function TimerModal(props) {
 
         {/* start timer modal form */}
         <form className="my-4" onSubmit={event => props.startTime(event, userInput)} noValidate>
+
+          <p className="close-timer">close</p>
 
           {/* start workout time section */}
           <fieldset className="form-group">
