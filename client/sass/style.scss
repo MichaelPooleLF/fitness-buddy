@@ -13,7 +13,7 @@
   z-index: 1000;
   display: flex;
   align-items: center;
-  background-color:  $light-blue;
+  background-color:  $primary-color;
 }
 
 .footer {
@@ -27,7 +27,7 @@
 }
 
 .footer-container {
-  background-color: $light-blue;
+  background-color: $primary-color;
   display: flex;
   justify-content: space-between;
   padding: .75rem 3rem;
@@ -47,7 +47,7 @@
 
 .days-container {
   text-align: center;
-  background-color: $light-blue;
+  background-color: $primary-color;
   color: white;
 }
 
@@ -66,7 +66,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: $light-blue;
+  background-color: $primary-color;
   font-size: 1.25rem;
 }
 
@@ -92,29 +92,28 @@
 .day:hover {
   color: black;
   cursor: pointer;
-  box-shadow: 0px 0px 5px $light-blue;
+  box-shadow: 0px 0px 5px $primary-color;
 }
 
 .active {
-  background-color: rgb(224, 133, 13);
+  background-color: $active-color;
 }
 
 .calorie-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   text-align: right;
+}
+
+.calorie-modal-container {
+  @extend %modal-container;
 }
 
 .calorie-modal-contents {
   background-color: rgb(234, 243, 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-center;
   flex-direction: column;
   text-align: center;
-  border: 3px solid $light-blue;
-  box-shadow: 0 0 25px $light-blue;
+  border: 3px solid $primary-color;
+  box-shadow: 0 0 25px $primary-color;
   border-radius: 20px;
   padding: 3rem 1rem;
   margin: 1rem;
@@ -125,11 +124,10 @@
   flex-wrap: wrap;
   justify-content: space-evenly;
 }
+
 .clock-container {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-center;
   margin-top: 50px;
 }
 
@@ -138,9 +136,12 @@
   height: 34vh;
   border-radius: 50%;
   border-style: solid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-center;
+}
+
+.timer-modal-background {
+  @extend %modal-container;
+  cursor: pointer;
 }
 
 .timer-modal-content {
@@ -148,10 +149,6 @@
   position: relative;
   background-color: white;
   width: 300px;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .close-timer {
@@ -234,19 +231,19 @@
 }
 
 .valid {
-  border: 1px solid #22EB54;
+  border: 1px solid $valid-color;
 }
 
 .invalid {
-  border: 1px solid red;
+  border: 1px solid $warning;
 }
 
 .blue {
-  color: $light-blue;
+  color: $primary-color;
 }
 
 .green {
-  color: #22EB54;
+  color: lighten($valid-color, 20%);
 }
 
 .white {
@@ -254,11 +251,11 @@
 }
 
 .red {
-  color: #dc3545;
+  color: darken($warning, 10%);
 }
 
 .orange {
-  color: rgb(240, 162, 18);
+  color: lighten($active-color, 10%);
 }
 
 textarea {

@@ -11,8 +11,10 @@
   z-index: 1000;
 }
 
-.timer-modal-background {
-  cursor: pointer;
+.calorie-modal-contents, .clock-container, .clock {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 #root {
@@ -114,17 +116,11 @@
 }
 
 .calorie-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   text-align: right;
 }
 
 .calorie-modal-contents {
   background-color: #eaf3ff;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
   text-align: center;
   border: 3px solid #4682B4;
@@ -141,10 +137,7 @@
 }
 
 .clock-container {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
   margin-top: 50px;
 }
 
@@ -153,9 +146,10 @@
   height: 34vh;
   border-radius: 50%;
   border-style: solid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.timer-modal-background {
+  cursor: pointer;
 }
 
 .timer-modal-content {
@@ -163,10 +157,6 @@
   position: relative;
   background-color: white;
   width: 300px;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .close-timer {
@@ -249,7 +239,7 @@
 }
 
 .valid {
-  border: 1px solid #22EB54;
+  border: 1px solid green;
 }
 
 .invalid {
@@ -261,7 +251,7 @@
 }
 
 .green {
-  color: #22EB54;
+  color: #00e600;
 }
 
 .white {
@@ -269,11 +259,11 @@
 }
 
 .red {
-  color: #dc3545;
+  color: #cc0000;
 }
 
 .orange {
-  color: #f0a212;
+  color: #f39e2d;
 }
 
 textarea {

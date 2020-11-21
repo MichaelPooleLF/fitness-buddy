@@ -11,11 +11,8 @@
   z-index: 1000;
 }
 
-.calorie-modal-container {
-  @extend %modal-container;
-}
-
-.timer-modal-background {
-  @extend %modal-container;
-  cursor: pointer;
+%flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
