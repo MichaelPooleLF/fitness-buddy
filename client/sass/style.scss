@@ -1,28 +1,5 @@
-/*
-*
-* Highlight and Hit ctrl+f to Find Section
-*
-* -------------------------------
-*
-*   Root Styling
-*   Header Styling
-*   Footer Styling
-*   Planner Styling
-*   Calorie Calculator Styling
-*   Timer Styling
-*   Add Exercise Styling
-*   Utility Classes
-*   Browser Specific
-*   Media Queries
-*
-* -------------------------------
-*
-*/
-
-
-/* ------------ */
-/* Root Styling */
-/* ------------ */
+@import "config";
+@import "utilities";
 
 #root {
   height: 85vh;
@@ -30,22 +7,14 @@
   overflow-y: auto;
 }
 
-/* -------------- */
-/* Header Styling */
-/* -------------- */
-
 .app-header {
   position: sticky;
   top: 0;
   z-index: 1000;
   display: flex;
   align-items: center;
-  background-color:  #4682B4;
+  background-color:  $primary-color;
 }
-
-/* -------------- */
-/* Footer Styling */
-/* -------------- */
 
 .footer {
   width: 100%;
@@ -58,7 +27,7 @@
 }
 
 .footer-container {
-  background-color: #4682B4;
+  background-color: $primary-color;
   display: flex;
   justify-content: space-between;
   padding: .75rem 3rem;
@@ -76,13 +45,9 @@
   transform: scale(1.3);
 }
 
-/* --------------- */
-/* Planner Styling */
-/* --------------- */
-
 .days-container {
   text-align: center;
-  background-color: #4682B4;
+  background-color: $primary-color;
   color: white;
 }
 
@@ -101,7 +66,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #4682B4;
+  background-color: $primary-color;
   font-size: 1.25rem;
 }
 
@@ -127,46 +92,28 @@
 .day:hover {
   color: black;
   cursor: pointer;
-  box-shadow: 0px 0px 5px #4682B4;
+  box-shadow: 0px 0px 5px $primary-color;
 }
 
 .active {
-  background-color: rgb(224, 133, 13);
+  background-color: $active-color;
 }
 
-/* -------------------------- */
-/* Calorie Calculator Styling */
-/* -------------------------- */
-
 .calorie-form {
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
   text-align: right;
 }
 
 .calorie-modal-container {
-  background-color: rgba(0, 0, 0, 0.5);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  bottom: 0;
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;
+  @extend %modal-container;
 }
 
 .calorie-modal-contents {
   background-color: rgb(234, 243, 255);
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-center;
   flex-direction: column;
   text-align: center;
-  border: 3px solid #4682B4;
-  box-shadow: 0 0 25px #4682B4;
+  border: 3px solid $primary-color;
+  box-shadow: 0 0 25px $primary-color;
   border-radius: 20px;
   padding: 3rem 1rem;
   margin: 1rem;
@@ -178,15 +125,9 @@
   justify-content: space-evenly;
 }
 
-/* ------------- */
-/* Timer Styling */
-/* ------------- */
-
 .clock-container {
-  display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-center;
   margin-top: 50px;
 }
 
@@ -195,23 +136,12 @@
   height: 34vh;
   border-radius: 50%;
   border-style: solid;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @extend %flex-center;
 }
 
 .timer-modal-background {
+  @extend %modal-container;
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 1000;
 }
 
 .timer-modal-content {
@@ -219,10 +149,6 @@
   position: relative;
   background-color: white;
   width: 300px;
-  z-index: 1000;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 .close-timer {
@@ -274,10 +200,6 @@
   margin-bottom: 0;
 }
 
-/* -------------------- */
-/* Add Exercise Styling */
-/* -------------------- */
-
 .choose-screen-button {
   font-size: 2rem;
   width: 75%;
@@ -296,10 +218,6 @@
   justify-content: center;
 }
 
-/* --------------- */
-/* Utility Classes */
-/* --------------- */
-
 .cursor-pointer {
   cursor: pointer;
 }
@@ -313,19 +231,19 @@
 }
 
 .valid {
-  border: 1px solid #22EB54;
+  border: 1px solid $valid-color;
 }
 
 .invalid {
-  border: 1px solid red;
+  border: 1px solid $warning;
 }
 
 .blue {
-  color: #4682B4;
+  color: $primary-color;
 }
 
 .green {
-  color: #22EB54;
+  color: lighten($valid-color, 20%);
 }
 
 .white {
@@ -333,50 +251,37 @@
 }
 
 .red {
-  color: #dc3545;
+  color: darken($warning, 10%);
 }
 
 .orange {
-  color: rgb(240, 162, 18);
+  color: lighten($active-color, 10%);
 }
 
 textarea {
   resize: none;
 }
 
-/* ---------------- */
-/* Browser Specific */
-/* ---------------- */
-
-/* Chrome, Safari, Edge, Opera */
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
 
-/* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
 }
 
-/* ------------- */
-/* Media Queries */
-/* ------------- */
-
 @media only screen and (max-width: 450px) {
-  /* header */
   .responsive-centering {
     justify-content: center;
   }
 
-  /* footer */
   .responsive-x-padding {
     padding-left: 1rem;
     padding-right: 1rem
   }
 
-  /* add exercise */
   .choose-screen-button {
     font-size: 2rem;
     padding: 1rem;
@@ -384,12 +289,10 @@ input[type=number] {
 }
 
 @media only screen and (max-width: 1200px) {
-  /* utility */
   .max-w-99 {
     max-width: 99%;
   }
 
-  /* utility */
   .max-w-100 {
     max-width: 100%;
   }
